@@ -139,7 +139,7 @@ module.exports = {
   initListeners: function(rootEl) {
 
     // markup elements available when method is called
-    var _rootEl = rootEl?rootEl:document;
+    var _rootEl = rootEl?rootEl:document,
         elList = _rootEl.querySelectorAll(attrSelector),
         i = elList.length;
         
