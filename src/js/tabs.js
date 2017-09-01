@@ -23,13 +23,13 @@ var jqLite = require('./lib/jqLite'),
  * Initialize the toggle element
  * @param {Element} toggleEl - The toggle element.
  */
-function initialize(toggleEl) {
+function initialize(toggleEl,rootEl) {
   // check flag
   if (toggleEl._muiTabs === true) return;
   else toggleEl._muiTabs = true;
 
   // attach click handler
-  jqLite.on(toggleEl, 'click', clickHandler);
+  jqLite.on(toggleEl, 'click', function(ev){clickHandler(ev,rootEl);});
 }
 
 
@@ -37,7 +37,7 @@ function initialize(toggleEl) {
  * Handle clicks on the toggle element.
  * @param {Event} ev - The DOM event.
  */
-function clickHandler(ev) {
+function clickHandler(ev, rootEl) {
   // only left clicks
   if (ev.button !== 0) return;
 
@@ -46,18 +46,20 @@ function clickHandler(ev) {
   // exit if toggle element is disabled
   if (toggleEl.getAttribute('disabled') !== null) return;
 
-  activateTab(toggleEl);
+  activateTab(toggleEl, rootEl);
 }
 
 
 /**
  * Activate the tab controlled by the toggle element.
  * @param {Element} toggleEl - The toggle element.
+ * @param {Element} rootEl - Either document or shadow root of the web component
  */
-function activateTab(currToggleEl) {
+function activateTab(currToggleEl,rootEl) {
+  
   var currTabEl = currToggleEl.parentNode,
       currPaneId = currToggleEl.getAttribute(controlsAttrKey),
-      currPaneEl = document.getElementById(currPaneId),
+      currPaneEl = rootEl.getElementById(currPaneId),
       prevTabEl,
       prevPaneEl,
       prevPaneId,
@@ -80,7 +82,7 @@ function activateTab(currToggleEl) {
 
   // get previous toggle and tab elements
   cssSelector = '[' + controlsAttrKey + '="' + prevPaneId + '"]';
-  prevToggleEl = document.querySelectorAll(cssSelector)[0];
+  prevToggleEl = rootEl.querySelectorAll(cssSelector)[0];
   prevTabEl = prevToggleEl.parentNode;
 
   // define event data
@@ -111,6 +113,7 @@ function activateTab(currToggleEl) {
 }
 
 
+
 /** 
  * Get previous active sibling.
  * @param {Element} el - The anchor element.
@@ -133,20 +136,23 @@ function getActiveSibling(el) {
 /** Define module API */
 module.exports = {
   /** Initialize module listeners */
-  initListeners: function() {
+  initListeners: function(rootEl) {
+    var
     // markup elements available when method is called
-    var elList = document.querySelectorAll(attrSelector),
+    var _rootEl = rootEl?rootEl:document;
+        elList = _rootEl.querySelectorAll(attrSelector),
         i = elList.length;
+        
     while (i--) {initialize(elList[i]);}
     
     animationHelpers.onAnimationStart('mui-tab-inserted', function(ev) {
-      initialize(ev.target);
+      initialize(ev.target,_rootEl);
     });
   },
   
   /** External API */
   api: {
-    activate: function(paneId) {
+    activate: function(paneId,rootEl) {
       var cssSelector = '[' + controlsAttrKey + '=' + paneId + ']',
           toggleEl = document.querySelectorAll(cssSelector);
 
@@ -154,7 +160,7 @@ module.exports = {
         util.raiseError('Tab control for pane "' + paneId + '" not found');
       }
 
-      activateTab(toggleEl[0]);
+      activateTab(toggleEl[0], rootEl);
     }
   }
 };
