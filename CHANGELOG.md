@@ -1,4 +1,6 @@
-# MUI Changelog
+	# MUI Changelog
+
+Fork - make it suitable for web components	
 
 ## 0.9.24 - August 29, 2017
 
