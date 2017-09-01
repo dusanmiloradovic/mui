@@ -1,7 +1,8 @@
+import 'skatejs-web-components';
 import { define, vdom,h,prop } from 'skatejs';
 import * as skate from 'skatejs';
 
-import tabbarstyles from '../src/sass/tabbar.scss';
+import tabbarstyles from '../sass/mui/tabbar.scss';
 
 import * as muitabs from '../js/tabs.js';
 

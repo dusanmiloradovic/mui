@@ -29,7 +29,8 @@ function initialize(toggleEl,rootEl) {
   else toggleEl._muiTabs = true;
 
   // attach click handler
-  jqLite.on(toggleEl, 'click', function(ev){clickHandler(ev,rootEl);});
+
+  jqLite.on(toggleEl, 'click', function(ev){clickHandler.call(this,ev,rootEl);});
 }
 
 
@@ -143,7 +144,7 @@ module.exports = {
         elList = _rootEl.querySelectorAll(attrSelector),
         i = elList.length;
         
-    while (i--) {initialize(elList[i]);}
+    while (i--) {initialize(elList[i],_rootEl);}
     
     animationHelpers.onAnimationStart('mui-tab-inserted', function(ev) {
       initialize(ev.target,_rootEl);
