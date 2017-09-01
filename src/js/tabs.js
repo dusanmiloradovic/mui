@@ -137,7 +137,7 @@ function getActiveSibling(el) {
 module.exports = {
   /** Initialize module listeners */
   initListeners: function(rootEl) {
-    var
+
     // markup elements available when method is called
     var _rootEl = rootEl?rootEl:document;
         elList = _rootEl.querySelectorAll(attrSelector),
