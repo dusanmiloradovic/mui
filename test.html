@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src="dist/bundle.js"></script>
-    <script>window.addEventListener("paneChange",function(ev){
-      console.log(ev);
-      });
-    </script>
-  </head>
-  <body>
-    <tab-bar justified tabs='["Uno","Dos","Tres","Quatro"]'></tab-bar>
-  </body>
+    <head>
+	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=yes">
+	<script src="dist/bundle.js"></script>
+	<script>window.addEventListener("paneChange",function(ev){
+	     console.log(ev);
+	 });
+	</script>
+	<!--style>
+	tab-bar{
+	--tab-bg-color:blue;
+	--tab-color:white;
+	--tab-active-color:yellow;
+	--tab-font-size:18px;
+	}
+    </style-->
+    </head>
+    <body>
+	<tab-bar justified tabs='["Uno","Dos","Tres","Quattro"]'></tab-bar>
+    </body>
 </html>

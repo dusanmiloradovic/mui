@@ -2,11 +2,12 @@
  * MUI Tabs module
  */
 
+
 .mui-tabs__bar {
   list-style: none;
   padding-left: 0;
   margin-bottom: 0;
-  background-color: transparent;
+  background-color:var(--tab-bg-color,transparent);
   white-space: nowrap;
   overflow-x: auto;
   
@@ -18,8 +19,8 @@
       white-space: nowrap;
       text-transform: uppercase;
       font-weight: 500;
-      font-size: 14px;
-      color: $mui-tab-font-color;
+      font-size: var(--tab-font-size,14px);
+      color: var(--tab-color,$mui-tab-font-color);
       cursor: default;
       height: 48px;
       line-height: 48px;
@@ -33,13 +34,14 @@
     }
 
     &.mui--is-active {
-      border-bottom: 2px solid $mui-tab-border-color-active;
+      border-bottom: 2px solid var(--tab-active-color,$mui-tab-border-color-active);
 
       > a {
+	  font-weight:bold;
         @if $mui-tab-font-color-active == null {
-          color: $mui-tab-font-color;
+          color: var(--tab-color,$mui-tab-font-color);
         } @else {
-          color: $mui-tab-font-color-active;
+          color: var(--tab-active-color,$mui-tab-font-color-active);
         }
       }
     }
@@ -71,3 +73,4 @@
 }
 
 ul{margin-top:0px; margin-bottom:0px;}
+
