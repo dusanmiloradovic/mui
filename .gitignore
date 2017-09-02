@@ -9,3 +9,5 @@ examples/assets/mui
 examples/email-inlined
 *.sublime-*
 .idea/
+dist/
+package-lock.json

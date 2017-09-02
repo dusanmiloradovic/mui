@@ -57,6 +57,11 @@ function clickHandler(ev, rootEl) {
  * @param {Element} rootEl - Either document or shadow root of the web component
  */
 function activateTab(currToggleEl,rootEl) {
+/*
+ * Web Components will typically have panes enclosed in some other component, and within the shadow dom , unable to reach from other component.
+ * All the pane elements should be optional in that case. The check will be done for the rootEl - if it is a document, the old conditions will apply
+ * 
+ */
   
   var currTabEl = currToggleEl.parentNode,
       currPaneId = currToggleEl.getAttribute(controlsAttrKey),
@@ -75,12 +80,16 @@ function activateTab(currToggleEl,rootEl) {
   if (jqLite.hasClass(currTabEl, activeClass)) return;
 
   // raise error if pane doesn't exist
-  if (!currPaneEl) util.raiseError('Tab pane "' + currPaneId + '" not found');
+  if (!currPaneEl && rootEl === document) util.raiseError('Tab pane "' + currPaneId + '" not found');
 
   // get previous pane
-  prevPaneEl = getActiveSibling(currPaneEl);
-  prevPaneId = prevPaneEl.id;
+  if (currPaneEl) {
+    prevPaneEl = getActiveSibling(currPaneEl);
+    prevPaneId = prevPaneEl.id;
+  }
 
+  prevPaneId=rootEl.querySelector("."+activeClass).firstElementChild.dataset.muiControls;
+  currPaneId=currToggleEl.dataset.muiControls;
   // get previous toggle and tab elements
   cssSelector = '[' + controlsAttrKey + '="' + prevPaneId + '"]';
   prevToggleEl = rootEl.querySelectorAll(cssSelector)[0];
@@ -94,6 +103,7 @@ function activateTab(currToggleEl,rootEl) {
   ev1 = util.dispatchEvent(prevToggleEl, hidestartKey, true, true, prevData);
   ev2 = util.dispatchEvent(currToggleEl, showstartKey, true, true, currData);
 
+
   // let events bubble
   setTimeout(function() {
     // exit if either event was canceled
@@ -104,8 +114,8 @@ function activateTab(currToggleEl,rootEl) {
     if (prevPaneEl) jqLite.removeClass(prevPaneEl, activeClass);
 
     // activate current
-    jqLite.addClass(currTabEl, activeClass);
-    jqLite.addClass(currPaneEl, activeClass);
+    if(currTabEl) jqLite.addClass(currTabEl, activeClass);
+    if(currPaneEl) jqLite.addClass(currPaneEl, activeClass);
 
     // dispatch 'hideend', 'showend' events
     util.dispatchEvent(prevToggleEl, hideendKey, true, false, prevData);

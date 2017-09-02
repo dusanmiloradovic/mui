@@ -2,8 +2,12 @@
 <html>
   <head>
     <script src="dist/bundle.js"></script>
+    <script>window.addEventListener("paneChange",function(ev){
+      console.log(ev);
+      });
+    </script>
   </head>
   <body>
-    <tab-bar></tab-bar>
+    <tab-bar justified tabs='["Uno","Dos","Tres","Quatro"]'></tab-bar>
   </body>
 </html>
