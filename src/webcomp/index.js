@@ -3,6 +3,7 @@ import { define, vdom,h,prop } from 'skatejs';
 import * as skate from 'skatejs';
 
 import tabbarstyles from '../sass/mui/tabbar.scss';
+import appbarstyles from '../sass/mui/appbar.scss';
 
 import * as muitabs from '../js/tabs.js';
 
@@ -49,3 +50,11 @@ export class TabBar extends skate.Component{
 }
 
 customElements.define('tab-bar',TabBar);
+
+export class AppBar extends skate.Component{
+    renderCallback(){
+	return [<style>{appbarstyles}</style>,<div class="mui-appbar"><slot/></div>];
+    }
+}
+
+customElements.define('app-bar',AppBar);
