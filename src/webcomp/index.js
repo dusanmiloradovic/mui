@@ -5,6 +5,7 @@ import * as skate from 'skatejs';
 import tabbarstyles from '../sass/mui/tabbar.scss';
 import appbarstyles from '../sass/mui/appbar.scss';
 import buttonstyles from '../sass/mui/button.scss';
+import containerstyles from '../sass/mui/containers.scss';
 
 import * as muitabs from '../js/tabs.js';
 
@@ -85,3 +86,19 @@ export class MuiButton extends skate.Component{
 }
 
 customElements.define('mui-button',MuiButton);
+
+
+export class MuiContainer extends skate.Component{
+    
+    static get props(){
+	return {
+	    fluid:prop.boolean({attribute:true})
+	};
+    }
+
+    renderCallback(){
+	return [<style>{containerstyles}</style>,<div class={this.fluid?"mui-container-fluid":"mui-container"}><slot/></div>];
+    }
+}
+
+customElements.define('mui-container',MuiContainer);
