@@ -6,19 +6,74 @@
 	<script>window.addEventListener("paneChange",function(ev){
 	     console.log(ev);
 	 });
+	 document.addEventListener("DOMContentLoaded", function(event) {
+	     console.log("DOM fully loaded and parsed");
+	     document.querySelector("mui-button").addEventListener("click",function(ev){
+		 console.log("Click event pierces the shadow root");
+	     });
+	 });
+	 
+
 	</script>
 	<!--style>
-	tab-bar{
-	--tab-bg-color:blue;
-	--tab-color:white;
-	--tab-active-color:yellow;
-	--tab-font-size:18px;
-	}
-    </style-->
+	     tab-bar{
+	   --tab-bg-color:blue;
+	   --tab-color:white;
+	   --tab-active-color:yellow;
+	   --tab-font-size:18px;
+	     }
+	     </style-->
     </head>
     <body>
 	<app-bar><div>test</div></app-bar>
 	<tab-bar justified tabs='["Uno","Dos","Tres","Quattro"]'></tab-bar>
-
+	<div>
+	    <mui-button>Button</mui-button>
+	    <mui-button primary>Button</mui-button>
+	    <mui-button danger>Button</mui-button>
+	    <mui-button accent>Button</mui-button>
+	</div>
+	<div>
+	    <mui-button disabled>Button</mui-button>
+	    <mui-button primary disabled>Button</mui-button>
+	    <mui-button danger disabled>Button</mui-button>
+	    <mui-button accent disabled>Button</mui-button>
+	</div>
+	<div>
+	    <mui-button flat>Button</mui-button>
+	    <mui-button flat primary>Button</mui-button>
+	    <mui-button flat danger>Button</mui-button>
+	    <mui-button flat accent>Button</mui-button>
+	</div>
+	<div>
+	    <mui-button flat disabled>Button</mui-button>
+	    <mui-button flat primary disabled>Button</mui-button>
+	    <mui-button flat danger disabled>Button</mui-button>
+	    <mui-button flat accent disabled>Button</mui-button>
+	</div>
+	<div>
+	    <mui-button raised>Button</mui-button>
+	    <mui-button raised primary>Button</mui-button>
+	    <mui-button raised danger>Button</mui-button>
+	    <mui-button raised accent>Button</mui-button>
+	</div>
+	<div>
+	    <mui-button raised disabled>Button</mui-button>
+	    <mui-button raised primary disabled>Button</mui-button>
+	    <mui-button raised danger disabled>Button</mui-button>
+	    <mui-button raised accent disabled>Button</mui-button>
+	</div>
+	<div>
+	    <mui-button fab>+</mui-button>
+	    <mui-button fab primary>+</mui-button>
+	    <mui-button fab danger>+</mui-button>
+	    <mui-button fab accent>+</mui-button>
+	</div>
+	<div>
+	    <mui-button fab disabled>+</mui-button>
+	    <mui-button fab primary disabled>+</mui-button>
+	    <mui-button fab danger disabled>+</mui-button>
+	    <mui-button fab accent disabled>+</mui-button>
+	</div>
     </body>
 </html>
