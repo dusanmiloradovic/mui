@@ -6,6 +6,7 @@ import tabbarstyles from '../sass/mui/tabbar.scss';
 import appbarstyles from '../sass/mui/appbar.scss';
 import buttonstyles from '../sass/mui/button.scss';
 import containerstyles from '../sass/mui/containers.scss';
+import dividerstyles from '../sass/mui/dividers.scss';
 
 import * as muitabs from '../js/tabs.js';
 
@@ -102,3 +103,27 @@ export class MuiContainer extends skate.Component{
 }
 
 customElements.define('mui-container',MuiContainer);
+
+export class MuiDivider extends skate.Component{
+
+    static get props(){
+	return{
+	    top:prop.boolean({attribute:true}),
+	    bottom:prop.boolean({attribute:true}),
+	    left:prop.boolean({attribute:true}),
+	    right:prop.boolean({attribute:true})
+	};
+    }
+
+    renderCallback(){
+	var dividerClass="mui-divider";
+	if (this.top) dividerClass="mui--divider-top";
+	if (this.bottom) dividerClass="mui--divider-bottom";
+	if (this.left) dividerClass="mui--divider-left";
+	if (this.right) dividerClass="mui--divider-right";
+	return[<style>{dividerstyles}</style>,<div class={dividerClass}><slot/></div>];
+    }
+
+}
+
+customElements.define('mui-divider',MuiDivider);
