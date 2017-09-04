@@ -184,7 +184,7 @@ export class MuiTextField extends skate.Component{
 	    fixed:prop.boolean({attribute:true}),
 	    label:prop.string({attribute:true}),
 	    textarea:prop.boolean({attribute:true}),
-	    error:prop.string({attribute:true}),
+	    errorMessage:prop.string({attribute:true}),
 	    value:prop.string({attribute:true})
 	};
     }
@@ -198,11 +198,18 @@ export class MuiTextField extends skate.Component{
 	    return [<style>{fieldstyles}</style>,
 		    <div class={fieldClass}>
 		{field}
-		<label>{this.label}</label></div>];
+		    <label>{this.label}</label><div class="mui-error">{this.errorMessage}</div></div>];
 		
 	}
 	return [<style>{fieldstyles}</style>,
-		<div class={fieldClass}>{field}</div>];
+		<div class={fieldClass}>{field}<div class="mui-error">{this.errorMessage}</div></div>];
+    }
+
+    renderedCallback(){
+	let inputField = this.shadowRoot.querySelector("input");
+	if (!inputField) inputField=this.shadowRoot.querySelector("textarea");
+	inputField.addEventListener("change",(ev)=>this.value=ev.target.value);
+	inputField.setCustomValidity(this.errorMessage);
     }
 }
 

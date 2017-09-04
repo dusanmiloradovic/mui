@@ -237,3 +237,8 @@ $xFormLabelLineHeight: floor($mui-label-font-size * 1.25);
     }
   }
 }
+
+.mui-error{
+    font-size:$mui-label-font-size;
+    color:$mui-danger-color;
+}
