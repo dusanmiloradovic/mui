@@ -107,16 +107,20 @@ function mouseUpHandler(ev) {
 
 /** Define module API */
 module.exports = {
-  /** Initialize module listeners */
-  initListeners: function() {
-    // markup elements available when method is called
-    var elList = document.getElementsByClassName('mui-btn'),
-        i = elList.length;
-    while (i--) initialize(elList[i]);
+    /** Initialize module listeners */
+    initListeners: function() {
+	// markup elements available when method is called
+	var elList = document.getElementsByClassName('mui-btn'),
+            i = elList.length;
+	while (i--) initialize(elList[i]);
 
-    // listen for new elements
-    animationHelpers.onAnimationStart('mui-btn-inserted', function(ev) {
-      initialize(ev.target);
-    });
-  }
+	// listen for new elements
+	animationHelpers.onAnimationStart('mui-btn-inserted', function(ev) {
+	    initialize(ev.target);
+	});
+    },
+    initialize:function(el){
+	initialize(el);
+    }
+    
 };

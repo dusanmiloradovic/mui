@@ -11,6 +11,7 @@ import dropdownstyles from '../sass/mui/dropdown.scss';
 
 import * as muitabs from '../js/tabs.js';
 import * as muidropdown from '../js/dropdown.js';
+import * as ripple from '../js/ripple.js';
 
 export class TabBar extends skate.Component{
     
@@ -85,6 +86,10 @@ export class MuiButton extends skate.Component{
 
 	var btn = this.disabled?<button class={btnclasses} disabled><slot/></button>:<button class={btnclasses}><slot/></button>;
 	return [<style>{buttonstyles}</style>, this.disabled?<button class={btnclasses} disabled><slot/></button>:<button class={btnclasses}><slot/></button>];
+    }
+
+    renderedCallback(){
+	ripple.initialize(this.shadowRoot.querySelector(".mui-btn"));
     }
 }
 
