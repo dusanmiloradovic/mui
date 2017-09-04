@@ -9,6 +9,7 @@ import containerstyles from '../sass/mui/containers.scss';
 import dividerstyles from '../sass/mui/dividers.scss';
 import dropdownstyles from '../sass/mui/dropdown.scss';
 import fieldstyles from '../sass/mui/field.scss';
+import checkboxradiostyles from '../sass/mui/checkboxandradio.scss';
 
 import * as muitabs from '../js/tabs.js';
 import * as muidropdown from '../js/dropdown.js';
@@ -214,3 +215,29 @@ export class MuiTextField extends skate.Component{
 }
 
 customElements.define('mui-textfield',MuiTextField);
+
+export class MuiCheckBox extends skate.Component{
+
+    static get props(){
+	return {
+	    name:prop.string({attribute:true}),
+	    disabled:prop.string({attribute:true}),
+	    value:prop.string({attribute:true}),
+	    label:prop.string({attribute:true}),
+	    checked:prop.boolean({attribute:true})
+	};
+    }
+
+    renderCallback(){
+	let field=<input type="checkbox" value={this.value} name={this.name} checked={this.checked} {...(this.disabled?"disabled":"")}></input>;
+	return [<style>{checkboxradiostyles}</style>,<div class="mui-checkbox"><label>{field}{this.label}</label></div>];
+    }
+
+    renderedCallback(){
+	var inputEl = this.shadowRoot.querySelector("input");
+	inputEl.addEventListener("change",(ev)=>this.checked=ev.target.checked);
+    }
+    
+}
+
+customElements.define('mui-checkbox',MuiCheckBox);
