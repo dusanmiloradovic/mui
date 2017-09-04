@@ -10,7 +10,10 @@
 	     console.log("DOM fully loaded and parsed");
 	     document.querySelector("mui-button").addEventListener("click",function(ev){
 		 console.log("Click event pierces the shadow root");
-	     });
+	  });
+	  document.querySelector("mui-dropdown").addEventListener("selection",function(ev){
+	  console.log("Dropdow selection index:"+this.active);
+	  });
 	 });
 	 
 

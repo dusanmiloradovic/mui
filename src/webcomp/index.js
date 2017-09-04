@@ -147,16 +147,26 @@ export class MuiDropdown extends skate.Component{
 
     renderCallback(){
 	let classn = this.right?"mui-dropdown__menu mui-dropdown__menu--right":"mui-dropdown__menu";
-	let lis = this.options.map((option,i)=><li><a href="#">{option}</a></li>);
+	
+	let lis = this.options.map((option,i)=><li><a href="#" data-order={i}>{option}</a></li>);
 	let ul=<ul class={classn}>{lis}</ul>;
 	return [<style>{dropdownstyles}</style>,<div class="mui-dropdown"><slot></slot>{ul}</div>];
 	
     }
 
     renderedCallback(){
+	
 	setTimeout(()=>{
-	var button=this.shadowRoot.host.firstElementChild;
+	    let button=this.shadowRoot.host.firstElementChild;
 	    muidropdown.initialize(button);
+	    let ul=this.shadowRoot.querySelector("ul");
+	    ul.addEventListener("mousedown",(ev)=>{
+		this.active=parseInt(ev.target.dataset.order);
+		let evv = new Event("selection",{bubbles:true, composed:true});
+		evv.selected=this.active;
+		ul.dispatchEvent(evv);
+	    });
+	    
 	},0);
     }
 
