@@ -245,3 +245,8 @@
   height: $mui-btn-fab-diameter-lg;
   line-height: $mui-btn-fab-diameter-lg;
 }
+
+
+:host{
+	display:inline-block;
+	}

@@ -99,3 +99,8 @@
   left: auto;
   right: 0;
 }
+
+::slotted(mui-button){
+	margin-bottom:0px;
+}
+

@@ -7,8 +7,10 @@ import appbarstyles from '../sass/mui/appbar.scss';
 import buttonstyles from '../sass/mui/button.scss';
 import containerstyles from '../sass/mui/containers.scss';
 import dividerstyles from '../sass/mui/dividers.scss';
+import dropdownstyles from '../sass/mui/dropdown.scss';
 
 import * as muitabs from '../js/tabs.js';
+import * as muidropdown from '../js/dropdown.js';
 
 export class TabBar extends skate.Component{
     
@@ -116,7 +118,7 @@ export class MuiDivider extends skate.Component{
     }
 
     renderCallback(){
-	var dividerClass="mui-divider";
+	let dividerClass="mui-divider";
 	if (this.top) dividerClass="mui--divider-top";
 	if (this.bottom) dividerClass="mui--divider-bottom";
 	if (this.left) dividerClass="mui--divider-left";
@@ -127,3 +129,33 @@ export class MuiDivider extends skate.Component{
 }
 
 customElements.define('mui-divider',MuiDivider);
+
+export class MuiDropdown extends skate.Component{
+
+    static get props(){
+	return {
+	    options:prop.array({attribute:true}),
+	    active:prop.number({attribute:true}),
+	    right:prop.boolean({attribute:true})
+	};
+    }
+
+    renderCallback(){
+	let classn = this.right?"mui-dropdown__menu mui-dropdown__menu--right":"mui-dropdown__menu";
+	let lis = this.options.map((option,i)=><li><a href="#">{option}</a></li>);
+	let ul=<ul class={classn}>{lis}</ul>;
+	return [<style>{dropdownstyles}</style>,<div class="mui-dropdown"><slot></slot>{ul}</div>];
+	
+    }
+
+    renderedCallback(){
+	setTimeout(()=>{
+	var button=this.shadowRoot.host.firstElementChild;
+	    muidropdown.initialize(button);
+	},0);
+    }
+
+
+}
+
+customElements.define('mui-dropdown', MuiDropdown);

@@ -63,6 +63,9 @@ function toggleDropdown(toggleEl) {
       menuEl = toggleEl.nextElementSibling,
       doc = wrapperEl.ownerDocument;
 
+    if (!menuEl && wrapperEl.shadowRoot){
+	menuEl=wrapperEl.shadowRoot.querySelector(".mui-dropdown__menu");
+    }
   // exit if no menu element
   if (!menuEl || !jqLite.hasClass(menuEl, menuClass)) {
     return util.raiseError('Dropdown menu element not found');
@@ -82,8 +85,11 @@ function toggleDropdown(toggleEl) {
     var wrapperRect = wrapperEl.getBoundingClientRect(),
         toggleRect = toggleEl.getBoundingClientRect();
 
-    var top = toggleRect.top - wrapperRect.top + toggleRect.height;
-    jqLite.css(menuEl, 'top', top + 'px');
+      if (!wrapperEl.shadowRoot){
+	  //web component can position this with just css
+	  var top = toggleRect.top - wrapperRect.top + toggleRect.height;
+	  jqLite.css(menuEl, 'top', top + 'px');
+      }
 
     // add open class to wrapper
     jqLite.addClass(menuEl, openClass);
@@ -111,5 +117,8 @@ module.exports = {
     animationHelpers.onAnimationStart('mui-dropdown-inserted', function(ev) {
       initialize(ev.target);
     });
-  }
+  },
+    initialize:function(el){
+	initialize(el);
+    }
 };
