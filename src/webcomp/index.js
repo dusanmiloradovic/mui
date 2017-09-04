@@ -8,6 +8,7 @@ import buttonstyles from '../sass/mui/button.scss';
 import containerstyles from '../sass/mui/containers.scss';
 import dividerstyles from '../sass/mui/dividers.scss';
 import dropdownstyles from '../sass/mui/dropdown.scss';
+import fieldstyles from '../sass/mui/field.scss';
 
 import * as muitabs from '../js/tabs.js';
 import * as muidropdown from '../js/dropdown.js';
@@ -174,3 +175,35 @@ export class MuiDropdown extends skate.Component{
 }
 
 customElements.define('mui-dropdown', MuiDropdown);
+
+export class MuiTextField extends skate.Component{
+
+    static get props(){
+	return {
+	    placeholder:prop.string({attribute:true}),
+	    fixed:prop.boolean({attribute:true}),
+	    label:prop.string({attribute:true}),
+	    textarea:prop.boolean({attribute:true}),
+	    error:prop.string({attribute:true}),
+	    value:prop.string({attribute:true})
+	};
+    }
+
+    renderCallback(){
+	var fieldClass="mui-textfield";
+	if (this.label && !this.fixed && !this.value) fieldClass+=" mui-textfield--float-label";
+	var field=this.textarea?<textarea>{this.value}</textarea>:<input type="text" value={this.value}></input>;
+	
+	if (this.label){
+	    return [<style>{fieldstyles}</style>,
+		    <div class={fieldClass}>
+		{field}
+		<label>{this.label}</label></div>];
+		
+	}
+	return [<style>{fieldstyles}</style>,
+		<div class={fieldClass}>{field}</div>];
+    }
+}
+
+customElements.define('mui-textfield',MuiTextField);
