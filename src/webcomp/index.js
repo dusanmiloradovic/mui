@@ -211,7 +211,12 @@ export class MuiTextField extends skate.Component{
     renderedCallback(){
 	let inputField = this.shadowRoot.querySelector("input");
 	if (!inputField) inputField=this.shadowRoot.querySelector("textarea");
-	inputField.addEventListener("change",(ev)=>this.value=ev.target.value);
+	inputField.addEventListener("change",(ev)=>{
+	    this.value=ev.target.value;
+	    let evv=new Event("change",{bubbles: true, composed: true});
+	    evv.value=this.value;
+	    this.shadowRoot.dispatchEvent(evv);
+	});
 	inputField.setCustomValidity(this.errorMessage);
     }
 }
@@ -240,7 +245,12 @@ export class MuiCheckBox extends skate.Component{
 
     renderedCallback(){
 	var inputEl = this.shadowRoot.querySelector("input");
-	inputEl.addEventListener("change",(ev)=>this.checked=ev.target.checked);
+	inputEl.addEventListener("change",(ev)=>{
+	    this.checked=ev.target.checked;
+	    let evv=new Event("change",{bubbles: true, composed: true});
+	    evv.checked=this.checked;
+	    this.shadowRoot.dispatchEvent(evv);
+	});
     }
     
 }
@@ -274,7 +284,12 @@ export class MuiRadioGroup extends skate.Component{
     
     renderedCallback(){
 	var el = this.shadowRoot.querySelector("#radiogroup");
-	el.addEventListener("change",(ev)=>this.value=ev.target.value);
+	el.addEventListener("change",(ev)=>{
+	    this.value=ev.target.value;
+	    let evv=new Event("change",{bubbles: true, composed: true});
+	    evv.value=this.value;
+	    this.shadowRoot.dispatchEvent(evv);
+	});
     }
 }
 
@@ -286,20 +301,20 @@ export class MuiSelect extends skate.Component{
     static get props(){
 	return {
 	    value:prop.string({attribute:true}),
-	    label:prop.string({attribte:true}),
+	    label:prop.string({attribute:true}),
 	    options:prop.array({attribute:true})
 	};
     }
 
     renderCallback(){
 	let lis = this.options.map((option)=>{
-	    if (option.optgroup){
-		let innerOptions=option.optgroupoptions.map((o)=>{
+	    if (option.group){
+		let innerOptions=option.groupoptions.map((o)=>{
 		    let attrs={};
 		    if (o == this.value)attrs.selected=true;
 		    return <option {...attrs}>{o}</option>;
 		});
-		return <optgroup label={option.optgrouplabel}>{innerOptions}</optgroup>;
+		return <optgroup label={option.group}>{innerOptions}</optgroup>;
 	    }else{
 		let attrs={};
 		if (option == this.value)attrs.selected=true;
@@ -310,9 +325,17 @@ export class MuiSelect extends skate.Component{
     }
 
     renderedCallback(){
-	var el=this.shadowRoot.querySelector(".mui-select");
-	el.addEventListener("change",(ev)=>this.value=ev.target.value);
-	muiselect.initialize(this.shadowRoot.querySelector("select"));
+	var el=this.shadowRoot.querySelector("select");
+	el.addEventListener("change",(ev)=>{
+	    this.value=ev.target.value;
+	    let evv=new Event("change",{bubbles: true, composed: true});
+	    evv.value=this.value;
+	    this.shadowRoot.dispatchEvent(evv);
+	});
+	
+	
+	muiselect.initialize(el);
+	
     }
 }
 
