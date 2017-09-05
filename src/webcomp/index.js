@@ -10,10 +10,12 @@ import dividerstyles from '../sass/mui/dividers.scss';
 import dropdownstyles from '../sass/mui/dropdown.scss';
 import fieldstyles from '../sass/mui/field.scss';
 import checkboxradiostyles from '../sass/mui/checkboxandradio.scss';
+import selectstyles from '../sass/mui/select.scss';
 
 import * as muitabs from '../js/tabs.js';
 import * as muidropdown from '../js/dropdown.js';
 import * as ripple from '../js/ripple.js';
+import * as muiselect from '../js/select.js';
 
 export class TabBar extends skate.Component{
     
@@ -277,3 +279,41 @@ export class MuiRadioGroup extends skate.Component{
 }
 
 customElements.define('mui-radiogroup', MuiRadioGroup);
+
+
+export class MuiSelect extends skate.Component{
+
+    static get props(){
+	return {
+	    value:prop.string({attribute:true}),
+	    label:prop.string({attribte:true}),
+	    options:prop.array({attribute:true})
+	};
+    }
+
+    renderCallback(){
+	let lis = this.options.map((option)=>{
+	    if (option.optgroup){
+		let innerOptions=option.optgroupoptions.map((o)=>{
+		    let attrs={};
+		    if (o == this.value)attrs.selected=true;
+		    return <option {...attrs}>{o}</option>;
+		});
+		return <optgroup label={option.optgrouplabel}>{innerOptions}</optgroup>;
+	    }else{
+		let attrs={};
+		if (option == this.value)attrs.selected=true;
+		return <option {...attrs}>{option}</option>;
+	    }
+	});
+	return [<style>{selectstyles}</style>,<div class="mui-select"><select>{lis}</select><label>{this.label}</label></div>];
+    }
+
+    renderedCallback(){
+	var el=this.shadowRoot.querySelector(".mui-select");
+	el.addEventListener("change",(ev)=>this.value=ev.target.value);
+	muiselect.initialize(this.shadowRoot.querySelector("select"));
+    }
+}
+
+customElements.define('mui-select',MuiSelect);

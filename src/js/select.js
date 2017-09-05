@@ -440,16 +440,19 @@ Menu.prototype.destroy = function() {
 
 /** Define module API */
 module.exports = {
-  /** Initialize module listeners */
-  initListeners: function() {
-    // markup elements available when method is called
-    var elList = doc.querySelectorAll(cssSelector),
-        i = elList.length;
-    while (i--) initialize(elList[i]);
+    /** Initialize module listeners */
+    initListeners: function() {
+	// markup elements available when method is called
+	var elList = doc.querySelectorAll(cssSelector),
+            i = elList.length;
+	while (i--) initialize(elList[i]);
 
-    // listen for mui-node-inserted events
-    animationHelpers.onAnimationStart('mui-select-inserted', function(ev) {
-      initialize(ev.target);
-    });
-  }
+	// listen for mui-node-inserted events
+	animationHelpers.onAnimationStart('mui-select-inserted', function(ev) {
+	    initialize(ev.target);
+	});
+    },
+    initialize:function(el){
+	initialize(el);
+    }
 };
