@@ -49,13 +49,16 @@ export class TabBar extends skate.Component{
     renderedCallback(){
 	muitabs.initListeners(this.shadowRoot);
 	let tabsEl=this.shadowRoot.querySelector("ul");
-	tabsEl.addEventListener("mui.tabs.showstart",(ev)=>{
-//	    console.log(ev);
-	    let evv=new Event("paneChange",{bubbles: true, composed: true});
-	    evv.prevPaneId=ev.relatedPaneId;
-	    evv.currPaneId=ev.paneId;
-	    tabsEl.dispatchEvent(evv);
-	});
+	if (!this.listenInitialized){
+	    this.listenInitialized=true;
+	    tabsEl.addEventListener("mui.tabs.showstart",(ev)=>{
+		
+		let evv=new Event("paneChange",{bubbles: true, composed: true});
+		evv.prevPaneId=ev.relatedPaneId;
+		evv.currPaneId=ev.paneId;
+		tabsEl.dispatchEvent(evv);
+	    });
+	}
     }
 }
 
@@ -164,12 +167,16 @@ export class MuiDropdown extends skate.Component{
 	    let button=this.shadowRoot.host.firstElementChild;
 	    muidropdown.initialize(button);
 	    let ul=this.shadowRoot.querySelector("ul");
-	    ul.addEventListener("mousedown",(ev)=>{
-		this.active=parseInt(ev.target.dataset.order);
-		let evv = new Event("selection",{bubbles:true, composed:true});
-		evv.selected=this.active;
-		ul.dispatchEvent(evv);
-	    });
+	    
+	    if(!this.listenInitialized){
+		this.listenInitialized=true;
+		ul.addEventListener("mousedown",(ev)=>{
+		    this.active=parseInt(ev.target.dataset.order);
+		    let evv = new Event("selection",{bubbles:true, composed:true});
+		    evv.selected=this.active;
+		    ul.dispatchEvent(evv);
+		});
+	    }
 	    
 	},0);
     }
@@ -211,12 +218,15 @@ export class MuiTextField extends skate.Component{
     renderedCallback(){
 	let inputField = this.shadowRoot.querySelector("input");
 	if (!inputField) inputField=this.shadowRoot.querySelector("textarea");
-	inputField.addEventListener("change",(ev)=>{
-	    this.value=ev.target.value;
-	    let evv=new Event("change",{bubbles: true, composed: true});
-	    evv.value=this.value;
-	    this.shadowRoot.dispatchEvent(evv);
-	});
+	if (!this.listenInitialized){
+	    this.listenInitialized=true;
+	    inputField.addEventListener("change",(ev)=>{
+		this.value=ev.target.value;
+		let evv=new Event("change",{bubbles: true, composed: true});
+		evv.value=this.value;
+		this.shadowRoot.dispatchEvent(evv);
+	    });
+	}
 	inputField.setCustomValidity(this.errorMessage);
     }
 }
@@ -245,12 +255,15 @@ export class MuiCheckBox extends skate.Component{
 
     renderedCallback(){
 	var inputEl = this.shadowRoot.querySelector("input");
-	inputEl.addEventListener("change",(ev)=>{
-	    this.checked=ev.target.checked;
-	    let evv=new Event("change",{bubbles: true, composed: true});
-	    evv.checked=this.checked;
-	    this.shadowRoot.dispatchEvent(evv);
-	});
+	if (!this.eventInitialized){
+	    this.eventInitialized=true;
+	    inputEl.addEventListener("change",(ev)=>{
+		this.checked=ev.target.checked;
+		let evv=new Event("change",{bubbles: true, composed: true});
+		evv.checked=this.checked;
+		this.shadowRoot.dispatchEvent(evv);
+	    });
+	}
     }
     
 }
@@ -284,12 +297,15 @@ export class MuiRadioGroup extends skate.Component{
     
     renderedCallback(){
 	var el = this.shadowRoot.querySelector("#radiogroup");
-	el.addEventListener("change",(ev)=>{
-	    this.value=ev.target.value;
-	    let evv=new Event("change",{bubbles: true, composed: true});
-	    evv.value=this.value;
-	    this.shadowRoot.dispatchEvent(evv);
-	});
+	if (!this.listenerInitialized){
+	    this.listenerInitialized=true;
+	    el.addEventListener("change",(ev)=>{
+		this.value=ev.target.value;
+		let evv=new Event("change",{bubbles: true, composed: true});
+		evv.value=this.value;
+		this.shadowRoot.dispatchEvent(evv);
+	    });
+	}
     }
 }
 
@@ -326,12 +342,15 @@ export class MuiSelect extends skate.Component{
 
     renderedCallback(){
 	var el=this.shadowRoot.querySelector("select");
-	el.addEventListener("change",(ev)=>{
-	    this.value=ev.target.value;
-	    let evv=new Event("change",{bubbles: true, composed: true});
-	    evv.value=this.value;
-	    this.shadowRoot.dispatchEvent(evv);
-	});
+	if (!this.listenerInitalized){
+	    this.listenerInitalized=true;
+	    el.addEventListener("change",(ev)=>{
+		this.value=ev.target.value;
+		let evv=new Event("change",{bubbles: true, composed: true});
+		evv.value=this.value;
+		this.shadowRoot.dispatchEvent(evv);
+	    });
+	}
 	
 	
 	muiselect.initialize(el);
