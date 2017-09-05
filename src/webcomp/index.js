@@ -221,7 +221,7 @@ export class MuiCheckBox extends skate.Component{
     static get props(){
 	return {
 	    name:prop.string({attribute:true}),
-	    disabled:prop.string({attribute:true}),
+	    disabled:prop.boolean({attribute:true}),
 	    value:prop.string({attribute:true}),
 	    label:prop.string({attribute:true}),
 	    checked:prop.boolean({attribute:true})
@@ -229,7 +229,10 @@ export class MuiCheckBox extends skate.Component{
     }
 
     renderCallback(){
-	let field=<input type="checkbox" value={this.value} name={this.name} checked={this.checked} {...(this.disabled?"disabled":"")}></input>;
+	let props={value:this.value,name:this.name};
+	if (this.checked)props.checked=true;
+	if (this.disabled)props.disabled=true;
+	let field=<input type="checkbox" {...props}></input>;
 	return [<style>{checkboxradiostyles}</style>,<div class="mui-checkbox"><label>{field}{this.label}</label></div>];
     }
 
@@ -241,3 +244,36 @@ export class MuiCheckBox extends skate.Component{
 }
 
 customElements.define('mui-checkbox',MuiCheckBox);
+
+
+export class MuiRadioGroup extends skate.Component{
+
+    static get props(){
+	return{
+	    options:prop.array({attribute:true}),
+	    name:prop.string({attribute:true}),
+	    value:prop.string({attribute:true})
+	};
+    }
+
+    renderCallback(){
+	if (!this.name){
+	    this.name="radio-group-1";
+	}
+	//this is local in shadow dom, so it is ok to hardcode the value
+	let lis = this.options.map((option,i)=>{
+	    let attrs = {name:this.name, type:"radio",value:option.value};
+	    if (option.disabled)attrs.disabled=true;
+	    if (option.value == this.value) attrs.checked=true;
+	    return <div class="mui-radio"><label><input {...attrs}/></label>{option.label}</div>;
+	});
+	return [<style>{checkboxradiostyles}</style>,<div id="radiogroup">{lis}</div>];
+    }
+    
+    renderedCallback(){
+	var el = this.shadowRoot.querySelector("#radiogroup");
+	el.addEventListener("change",(ev)=>this.value=ev.target.value);
+    }
+}
+
+customElements.define('mui-radiogroup', MuiRadioGroup);
