@@ -2,7 +2,7 @@ import 'skatejs-web-components';
 import { define, vdom,h,prop } from 'skatejs';
 import * as skate from 'skatejs';
 
-import 'roboto-fontface/css/roboto/sass/roboto-fontface.scss';
+import robotofont from 'roboto-fontface/css/roboto/sass/roboto-fontface.scss';
 
 import tabbarstyles from '../sass/mui/tabbar.scss';
 import appbarstyles from '../sass/mui/appbar.scss';
@@ -15,6 +15,7 @@ import checkboxradiostyles from '../sass/mui/checkboxandradio.scss';
 import selectstyles from '../sass/mui/select.scss';
 import overlaystyles from '../sass/mui/overlay.scss';
 import panelstyles from '../sass/mui/panel.scss';
+import textstyles from '../sass/mui/text.scss';
 
 
 import * as muitabs from '../js/tabs.js';
@@ -117,8 +118,19 @@ export class MuiContainer extends skate.Component{
     }
 
     renderCallback(){
+
 	return [<style>{containerstyles}</style>,<div class={this.fluid?"mui-container-fluid":"mui-container"}><slot/></div>];
     }
+
+    //There is no way to add the font-face to the shadow root(not implemented in webkit - https://bugs.chromium.org/p/chromium/issues/detail?id=336876), so we will attach it to the html head directly
+
+    renderedCallback(){
+	var stEl = document.createElement("style");
+	stEl.innerHTML=robotofont+" body{font-family:'Roboto';}";
+	document.head.append(stEl);
+    }
+
+    
 }
 
 customElements.define('mui-container',MuiContainer);
@@ -399,3 +411,25 @@ export class MuiPanel extends skate.Component{
 }
 
 customElements.define('mui-panel',MuiPanel);
+
+
+export class MuiText extends skate.Component{
+
+    static get props(){
+	return{
+	    textStyle:prop.string({attribute:true}),
+	    textColor:prop.string({attribute:true})
+	};
+    }
+
+    renderCallback(){
+	let primClass="";
+	if (this.textStyle) primClass="mui--text-"+this.textStyle;
+	let secClass="";
+	if (this.textColor) secClass="mui--text-"+this.textColor;
+	let clz = primClass+" "+secClass;
+	return [<style>{textstyles}</style>,<div class={clz}><slot/></div>];
+    }
+}
+
+customElements.define('mui-text',MuiText);
