@@ -12,3 +12,12 @@
   background-color: $mui-overlay-bg-color;
   overflow: auto;
 }
+
+
+:host {
+    display:none;
+}
+
+:host([open]){
+    display:block;
+}

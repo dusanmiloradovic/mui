@@ -11,6 +11,7 @@ import dropdownstyles from '../sass/mui/dropdown.scss';
 import fieldstyles from '../sass/mui/field.scss';
 import checkboxradiostyles from '../sass/mui/checkboxandradio.scss';
 import selectstyles from '../sass/mui/select.scss';
+import overlaystyles from '../sass/mui/overlay.scss';
 
 import * as muitabs from '../js/tabs.js';
 import * as muidropdown from '../js/dropdown.js';
@@ -359,3 +360,29 @@ export class MuiSelect extends skate.Component{
 }
 
 customElements.define('mui-select',MuiSelect);
+
+
+export class MuiOverlay extends skate.Component{
+
+    static get props(){
+	return {
+	    open:prop.boolean({attribute:true})
+	};
+    }
+
+    renderCallback(){
+	return [<style>{overlaystyles}</style>,<div id="mui-overlay"><slot/></div>];
+    }
+
+    attributeChangedCallback(name,oldValue,newValue){
+	if (name == "open"){
+	    if (newValue == "" && oldValue == null){
+		document.body.style.overflow="hidden";
+	    }else{
+		document.body.style.overflow="";
+	    }
+	}
+    }
+}
+
+customElements.define('mui-overlay',MuiOverlay);
