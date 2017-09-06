@@ -2,6 +2,7 @@
 <html>
     <head>
 	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=yes">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<script src="dist/bundle.js"></script>
 	<script>window.addEventListener("paneChange",function(ev){
 	     console.log(ev);
@@ -26,6 +27,11 @@
 	 
 
 	</script>
+	<!-- style>
+	 html{
+	     font-family: 'Roboto', sans-serif;
+	 }
+	</style-->
 	<!--style>
 	     tab-bar{
 	   --tab-bg-color:blue;
@@ -117,6 +123,12 @@
 		</div> 
 	    </mui-overlay>
 	    <mui-button id="open-overlay" primary>Open Overlay</mui-button>
+	    <mui-panel>
+		<mui-textfield label="Field1" value="Initial value"></mui-textfield>
+		<mui-textfield label="Field2" fixed></mui-textfield>
+		<mui-textfield label="Field3"></mui-textfield>
+		<mui-button danger>Button</mui-button>
+	    </mui-panel>
 	</mui-container>
     </body>
 </html>

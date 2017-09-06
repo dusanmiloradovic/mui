@@ -45,6 +45,7 @@
 						"css-loader": "^0.28.7",
 						"del": "^3.0.0",
 						"each-async": "^1.1.1",
+						"file-loader": "^0.11.2",
 						"gulp": "git+https://github.com/gulpjs/gulp#4.0",
 						"gulp-autoprefixer": "^4.0.0",
 						"gulp-babel": "^7.0.0",
@@ -81,12 +82,14 @@
 						"style-loader": "^0.18.2",
 						"synthetic-dom-events": "^0.3.0",
 						"to-string-loader": "^1.1.5",
+						"url-loader": "^0.5.9",
 						"vinyl-source-stream": "^1.1.0",
 						"webpack": "^3.5.5",
 						"whatwg-url-compat": "^0.6.5",
 						"xmlhttprequest": "^1.8.0"
 			},
 			"dependencies": {
+						"roboto-fontface": "^0.8.0",
 						"skatejs": "^4.6.7",
 						"skatejs-web-components": "0.0.1"
 			},

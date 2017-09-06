@@ -2,6 +2,8 @@ import 'skatejs-web-components';
 import { define, vdom,h,prop } from 'skatejs';
 import * as skate from 'skatejs';
 
+import 'roboto-fontface/css/roboto/sass/roboto-fontface.scss';
+
 import tabbarstyles from '../sass/mui/tabbar.scss';
 import appbarstyles from '../sass/mui/appbar.scss';
 import buttonstyles from '../sass/mui/button.scss';
@@ -12,6 +14,8 @@ import fieldstyles from '../sass/mui/field.scss';
 import checkboxradiostyles from '../sass/mui/checkboxandradio.scss';
 import selectstyles from '../sass/mui/select.scss';
 import overlaystyles from '../sass/mui/overlay.scss';
+import panelstyles from '../sass/mui/panel.scss';
+
 
 import * as muitabs from '../js/tabs.js';
 import * as muidropdown from '../js/dropdown.js';
@@ -386,3 +390,12 @@ export class MuiOverlay extends skate.Component{
 }
 
 customElements.define('mui-overlay',MuiOverlay);
+
+export class MuiPanel extends skate.Component{
+
+    renderCallback(){
+	return [<style>{panelstyles}</style>,<div class="mui-panel"><slot/></div>];
+    }
+}
+
+customElements.define('mui-panel',MuiPanel);
