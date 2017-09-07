@@ -2,7 +2,7 @@
 import { define, vdom,h,prop } from 'skatejs';
 import * as skate from 'skatejs';
 
-import robotofont from 'roboto-fontface/css/roboto/sass/roboto-fontface.scss';
+import robotofont from 'roboto_fontface';
 
 import tabbarstyles from '../sass/mui/tabbar.scss';
 import appbarstyles from '../sass/mui/appbar.scss';

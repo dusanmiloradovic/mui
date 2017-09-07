@@ -91,11 +91,11 @@
 						"xmlhttprequest": "^1.8.0"
 			},
 			"dependencies": {
-						"roboto-fontface": "^0.8.0",
 						"skatejs-web-components": "0.0.1"
 			},
 			"peerDependencies": {
-						"skatejs": "*"
+  						"roboto-fontface": "^0.8.0",
+						"skatejs": "^4.6.7"
 			},
 			"engines": {
 						"npm": ">=3.3.12"
