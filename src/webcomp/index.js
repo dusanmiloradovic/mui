@@ -66,17 +66,21 @@ export class TabBar extends skate.Component{
 	    });
 	}
     }
-}
 
-customElements.define('tab-bar',TabBar);
+    static get is(){
+	return 'tab-bar';
+    }
+}
 
 export class AppBar extends skate.Component{
     renderCallback(){
 	return [<style>{appbarstyles}</style>,<div class="mui-appbar"><slot/></div>];
     }
-}
 
-customElements.define('app-bar',AppBar);
+    static get is(){
+	return 'app-bar';
+    }
+}
 
 export class MuiButton extends skate.Component{
 
@@ -104,10 +108,11 @@ export class MuiButton extends skate.Component{
     renderedCallback(){
 	ripple.initialize(this.shadowRoot.querySelector(".mui-btn"));
     }
+
+    static get is(){
+	return 'mui-button';
+    }
 }
-
-customElements.define('mui-button',MuiButton);
-
 
 export class MuiContainer extends skate.Component{
     
@@ -130,10 +135,11 @@ export class MuiContainer extends skate.Component{
 	document.head.append(stEl);
     }
 
+    static get is(){
+	return 'mui-container';
+    }
     
 }
-
-customElements.define('mui-container',MuiContainer);
 
 export class MuiDivider extends skate.Component{
 
@@ -155,9 +161,10 @@ export class MuiDivider extends skate.Component{
 	return[<style>{dividerstyles}</style>,<div class={dividerClass}><slot/></div>];
     }
 
+    static get is(){
+	return 'mui-divider';
+    }
 }
-
-customElements.define('mui-divider',MuiDivider);
 
 export class MuiDropdown extends skate.Component{
 
@@ -198,10 +205,10 @@ export class MuiDropdown extends skate.Component{
 	},0);
     }
 
-
+    static get is(){
+	return 'mui-dropdown';
+    }
 }
-
-customElements.define('mui-dropdown', MuiDropdown);
 
 export class MuiTextField extends skate.Component{
 
@@ -246,9 +253,11 @@ export class MuiTextField extends skate.Component{
 	}
 	inputField.setCustomValidity(this.errorMessage);
     }
-}
 
-customElements.define('mui-textfield',MuiTextField);
+    static get is(){
+	return 'mui-textfield';
+    }
+}
 
 export class MuiCheckBox extends skate.Component{
 
@@ -282,11 +291,11 @@ export class MuiCheckBox extends skate.Component{
 	    });
 	}
     }
-    
+
+    static get is(){
+	return 'mui-checkbox';
+    }
 }
-
-customElements.define('mui-checkbox',MuiCheckBox);
-
 
 export class MuiRadioGroup extends skate.Component{
 
@@ -324,10 +333,11 @@ export class MuiRadioGroup extends skate.Component{
 	    });
 	}
     }
+
+    static get is(){
+	return 'mui-radiogroup';
+    }
 }
-
-customElements.define('mui-radiogroup', MuiRadioGroup);
-
 
 export class MuiSelect extends skate.Component{
 
@@ -373,9 +383,13 @@ export class MuiSelect extends skate.Component{
 	muiselect.initialize(el);
 	
     }
+
+    static get is(){
+	return 'mui-select';
+    }
 }
 
-customElements.define('mui-select',MuiSelect);
+
 
 
 export class MuiOverlay extends skate.Component{
@@ -399,19 +413,24 @@ export class MuiOverlay extends skate.Component{
 	    }
 	}
     }
+
+    static get is(){
+	return 'mui-overlay';
+    }
 }
 
-customElements.define('mui-overlay',MuiOverlay);
+
 
 export class MuiPanel extends skate.Component{
 
     renderCallback(){
 	return [<style>{panelstyles}</style>,<div class="mui-panel"><slot/></div>];
     }
+
+    static get is(){
+	return 'mui-panel';
+    }
 }
-
-customElements.define('mui-panel',MuiPanel);
-
 
 export class MuiText extends skate.Component{
 
@@ -430,6 +449,26 @@ export class MuiText extends skate.Component{
 	let clz = primClass+" "+secClass;
 	return [<style>{textstyles}</style>,<div class={clz}><slot/></div>];
     }
+
+    static get is(){
+	return 'mui-text';
+    }
 }
 
-customElements.define('mui-text',MuiText);
+
+
+export default function importAllComponents(){
+    customElements.define(AppBar.is,AppBar);
+    customElements.define(MuiContainer.is,MuiContainer);
+    customElements.define(MuiButton.is,MuiButton);
+    customElements.define(MuiDivider.is,MuiDivider);
+    customElements.define(MuiDropdown.is, MuiDropdown);
+    customElements.define(MuiTextField.is,MuiTextField);
+    customElements.define(MuiCheckBox.is,MuiCheckBox);
+    customElements.define(MuiRadioGroup.is, MuiRadioGroup);
+    customElements.define(MuiSelect.is,MuiSelect);
+    customElements.define(MuiOverlay.is,MuiOverlay);
+    customElements.define(TabBar.is,TabBar);
+    customElements.define(MuiPanel.is,MuiPanel);
+    customElements.define(MuiText.is,MuiText);
+}
