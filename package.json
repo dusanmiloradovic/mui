@@ -1,5 +1,5 @@
 {
-			"version": "0.9.27",
+			"version": "0.9.28",
 			"license": "MIT",
 			"description": "MUICSS web components",
 			"homepage": "https://www.muicss.com",
@@ -94,7 +94,7 @@
 						"skatejs-web-components": "0.0.1"
 			},
 			"peerDependencies": {
-  						"roboto-fontface": "^0.8.0",
+						"roboto-fontface": "^0.8.0",
 						"skatejs": "^4.6.7"
 			},
 			"engines": {
