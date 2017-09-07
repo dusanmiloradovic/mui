@@ -1,6 +1,5 @@
 {
  "plugins":[[
     "transform-react-jsx", {"pragma": "h"}],
-     ["transform-object-rest-spread"]],
-  "presets":["es2015"]
+     ["transform-object-rest-spread"]]
 }

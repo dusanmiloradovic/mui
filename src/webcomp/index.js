@@ -1,4 +1,4 @@
-import 'skatejs-web-components';
+//import 'skatejs-web-components';
 import { define, vdom,h,prop } from 'skatejs';
 import * as skate from 'skatejs';
 
