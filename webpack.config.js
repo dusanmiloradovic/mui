@@ -4,7 +4,16 @@ module.exports = {
     entry: './src/webcomp/index.js',
     output: {
 	path: path.resolve(__dirname, "dist"), 
-	filename: 'bundle.js'
+	filename: 'mui-webcomp.js',
+	library:'muicss-webcomp',
+	libraryTarget:'umd'
+    },
+    externals:{
+	skatejs:{
+	    commonjs:'skatejs',
+	    commonjs2:'skatejs',
+	    amd:'skatejs'
+	}
     },
     module: {
 	loaders: [
