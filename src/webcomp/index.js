@@ -62,7 +62,19 @@ export class TabBar extends skate.Component{
 		let evv=new Event("paneChange",{bubbles: true, composed: true});
 		evv.prevPaneId=ev.relatedPaneId;
 		evv.currPaneId=ev.paneId;
+		evv.currTabIndex = 
 		tabsEl.dispatchEvent(evv);
+	    });
+
+	    tabsEl.addEventListener("mui.tabs.showend",(ev)=>{
+		for (var j=0;j<this.children.count;j++){
+		    if (this.children[j].classList.contains("mui--is-active")){
+			this.active=j;
+			break;
+		    }
+		    
+		}
+		var activeEl=this.querySelector(".mui--is-active");
 	    });
 	}
     }
