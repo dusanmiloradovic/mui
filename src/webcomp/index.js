@@ -68,7 +68,7 @@ export class TabBar extends skate.Component{
 	    });
 
 	    tabsEl.addEventListener("mui.tabs.showend",(ev)=>{
-		for (var j=0;j<tabsEl.children.count;j++){
+		for (var j=0;j<tabsEl.children.length;j++){
 		    if (tabsEl.children[j].classList.contains("mui--is-active")){
 			this.active=j;
 			break;
