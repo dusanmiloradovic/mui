@@ -54,6 +54,7 @@ export class TabBar extends skate.Component{
 
     renderedCallback(){
 	muitabs.initListeners(this.shadowRoot);
+	var that=this;
 	let tabsEl=this.shadowRoot.querySelector("ul");
 	if (!this.listenInitialized){
 	    this.listenInitialized=true;
@@ -69,7 +70,7 @@ export class TabBar extends skate.Component{
 	    tabsEl.addEventListener("mui.tabs.showend",(ev)=>{
 		for (var j=0;j<this.children.count;j++){
 		    if (this.children[j].classList.contains("mui--is-active")){
-			this.active=j;
+			that.active=j;
 			break;
 		    }
 		    
