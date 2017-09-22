@@ -58,16 +58,9 @@ export class TabBar extends skate.Component{
 	let tabsEl=this.shadowRoot.querySelector("ul");
 	if (!this.listenInitialized){
 	    this.listenInitialized=true;
-	    tabsEl.addEventListener("mui.tabs.showstart",(ev)=>{
-		
-		let evv=new Event("paneChange",{bubbles: true, composed: true});
-		evv.prevPaneId=ev.relatedPaneId;
-		evv.currPaneId=ev.paneId;
-		evv.currTabIndex = 
-		tabsEl.dispatchEvent(evv);
-	    });
 
 	    tabsEl.addEventListener("mui.tabs.showend",(ev)=>{
+		
 		for (var j=0;j<tabsEl.children.length;j++){
 		    if (tabsEl.children[j].classList.contains("mui--is-active")){
 			this.active=j;
@@ -75,7 +68,12 @@ export class TabBar extends skate.Component{
 		    }
 		    
 		}
-		var activeEl=this.querySelector(".mui--is-active");
+			let evv=new Event("paneChange",{bubbles: true, composed: true});
+		evv.prevPaneId=ev.relatedPaneId;
+		evv.currPaneId=ev.paneId;
+		evv.currTabIndex = 
+		tabsEl.dispatchEvent(evv);
+
 	    });
 	}
     }
