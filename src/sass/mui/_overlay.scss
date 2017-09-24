@@ -26,6 +26,7 @@
     background-color:#EFF0F1;
 }
 
-:host([animated]) #mui-overlay{
-    background-color:#EFF0F1;
+:host([open][animated]) #mui-overlay{
+    background-color: $mui-overlay-bg-color;
+    transition:background-color 1000ms linear;
 }
