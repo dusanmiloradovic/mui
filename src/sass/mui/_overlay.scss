@@ -34,5 +34,5 @@
 :host([open][animated]) #mui-overlay{
     height:100%;
     background-color: $mui-overlay-bg-color;
-    transition:height 0ms background-color 1000ms linear;
+    transition:height 0ms, background-color 1000ms linear;
 }
