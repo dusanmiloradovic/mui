@@ -407,7 +407,8 @@ export class MuiOverlay extends skate.Component{
 
     static get props(){
 	return {
-	    open:prop.boolean({attribute:true})
+	    open:prop.boolean({attribute:true}),
+	    animated:prop.boolean({attribute:true})
 	};
     }
 
