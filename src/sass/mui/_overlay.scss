@@ -22,11 +22,17 @@
     display:block;
 }
 
+:host([animated]){
+    display:block;
+}
+
 :host([animated]) #mui-overlay{
+    height:0%;
     background-color:#EFF0F1;
 }
 
 :host([open][animated]) #mui-overlay{
+    height:100%;
     background-color: $mui-overlay-bg-color;
-    transition:background-color 1000ms linear;
+    transition:height 0ms, background-color 1000ms linear;
 }
