@@ -2,7 +2,12 @@
 <html>
     <head>
       <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=yes">
-	<script src="dist/bundle.js"></script>
+          <script src="https://unpkg.com/skatejs-web-components/dist/index.min.js"></script>
+    <script src="https://unpkg.com/skatejs@4.6.7/dist/index-with-deps.min.js"></script>
+    <script src="dist/mui-webcomp.js"></script>
+    <script>
+      importAllComponents();
+      </script>
 	<script>window.addEventListener("paneChange",function(ev){
 	     console.log(ev);
 	 });

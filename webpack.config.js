@@ -12,7 +12,8 @@ module.exports = {
 	skatejs:{
 	    commonjs:'skatejs',
 	    commonjs2:'skatejs',
-	    amd:'skatejs'
+	    amd:'skatejs',
+	    root:'skate'
 	},
 	roboto_fontface:{
 	    commonjs:'roboto-fontface',
