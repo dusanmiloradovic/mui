@@ -484,3 +484,5 @@ export default function importAllComponents(){
     customElements.define(MuiPanel.is,MuiPanel);
     customElements.define(MuiText.is,MuiText);
 }
+
+window["importAllComponents"]=importAllComponents;
