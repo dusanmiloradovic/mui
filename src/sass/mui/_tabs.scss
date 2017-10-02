@@ -34,7 +34,7 @@
     }
 
     &.mui--is-active {
-      border-bottom: 2px solid var(--tab-active-color,$mui-tab-border-color-active);
+      border-bottom: 2px solid var(--tab-underline-color,$mui-tab-border-color-active);
 
       > a {
 	  font-weight:bold;
