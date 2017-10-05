@@ -47,6 +47,11 @@
 // ============================================================================
 // DEFAULT-BUTTON
 // ============================================================================
+#ripplecont{
+    position: relative;
+    overflow: hidden;
+
+}
 
 .mui-btn {
   @include mui-text("button");
@@ -247,6 +252,3 @@
 }
 
 
-:host{
-	display:inline-block;
-	}

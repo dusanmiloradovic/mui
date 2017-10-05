@@ -3,7 +3,7 @@
 }
 
 
-:host{
+:host(:not(mui-ripple)){
     display:inline-block;
     margin:$mui-btn-margin-vertical 0;
     font-family:"Roboto"

@@ -467,7 +467,20 @@ export class MuiText extends skate.Component{
     }
 }
 
+export class MuiRipple extends skate.Component{
 
+    static get is(){
+	return 'mui-ripple';
+    }
+
+    renderCallback(){
+	return [<style>{buttonstyles}</style>,<div id="ripplecont"><slot/></div>];
+    }
+
+    renderedCallback(){
+	ripple.initialize(this.shadowRoot.querySelector("#ripplecont"));
+    }
+}
 
 export default function importAllComponents(){
     customElements.define(AppBar.is,AppBar);
@@ -483,6 +496,7 @@ export default function importAllComponents(){
     customElements.define(TabBar.is,TabBar);
     customElements.define(MuiPanel.is,MuiPanel);
     customElements.define(MuiText.is,MuiText);
+    customElements.define(MuiRipple.is,MuiRipple);
 }
 
 window["importAllComponents"]=importAllComponents;
