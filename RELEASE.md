@@ -3,7 +3,7 @@
 1. Build packages
 
   ```bash
-  $ npm run build-all
+  $ npm run build-ws
   ```
 
 1. Add release notes to CHANGELOG.md
@@ -37,9 +37,4 @@
   $ npm publish
   ```
 
-1. Update package on Meteor repository
 
-  ```bash
-  $ cd packages/meteor
-  $ meteor publish
-  ```
