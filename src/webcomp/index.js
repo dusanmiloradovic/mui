@@ -230,6 +230,7 @@ export class MuiTextField extends skate.Component{
 	    label:prop.string({attribute:true}),
 	    textarea:prop.boolean({attribute:true}),
 	    errorMessage:prop.string({attribute:true}),
+	    disabled:prop.boolean({attribute:true}),
 	    value:prop.string({attribute:true})
 	};
     }
@@ -237,7 +238,9 @@ export class MuiTextField extends skate.Component{
     renderCallback(){
 	var fieldClass="mui-textfield";
 	if (this.label && !this.fixed && !this.value) fieldClass+=" mui-textfield--float-label";
-	var field=this.textarea?<textarea>{this.value}</textarea>:<input type="text" value={this.value}></input>;
+	let props = this.textarea?{}:{type:"text", value:this.value};
+	if (this.disabled) props.disabled=true;
+	var field=this.textarea?<textarea {...props}>{this.value}</textarea>:<input {...props}></input>;
 	
 	if (this.label){
 	    return [<style>{fieldstyles}</style>,
