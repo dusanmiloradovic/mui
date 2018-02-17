@@ -23,6 +23,27 @@ import * as muidropdown from '../js/dropdown.js';
 import * as ripple from '../js/ripple.js';
 import * as muiselect from '../js/select.js';
 
+import fontawesome from '@fortawesome/fontawesome';
+import faTwitter from '@fortawesome/fontawesome-free-brands/faTwitter';
+
+import {htmlToHs} from 'html-to-hyperscript';
+
+let convert= htmlToHs({syntax: "h"});
+
+
+export class Twitter extends skate.Component{
+    renderCallback(){
+	
+	return <div style="height:40px;width:40px"></div>;
+    }
+    renderedCallback(){
+	let twIcon=fontawesome.icon(faTwitter).html[0];
+	this.shadowRoot.firstElementChild.innerHTML=twIcon;
+    }
+}
+
+customElements.define("fa-twitter", Twitter);
+
 export class TabBar extends skate.Component{
     
     static get props(){
