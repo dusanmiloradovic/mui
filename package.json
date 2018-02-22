@@ -1,11 +1,11 @@
 {
-			"version": "0.10.1",
+			"version": "0.11.0",
 			"license": "MIT",
 			"description": "MUICSS web components",
 			"homepage": "https://www.muicss.com",
 			"name": "muicss-webcomp",
-    "main": "dist/mui-webcomp.js",
-    "unpkg":"distfull/mui-webcomp-full.js",
+			"main": "dist/mui-webcomp.js",
+			"unpkg": "distfull/mui-webcomp-full.js",
 			"bugs": {
 						"url": "https://github.com/dusanmiloradovic/mui/issues",
 						"email": "contact@muicss.com"
