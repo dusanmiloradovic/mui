@@ -50,7 +50,7 @@ export class TabBar extends Component{
 	});
 
 	var ulClasses=this.justified?"mui-tabs__bar mui-tabs__bar--justified":"mui-tabs__bar";
-	return <div><style>{tabbarstyles}</style>,
+	return <div><style>{tabbarstyles}</style>
 		<ul class={ulClasses}>{lis}</ul></div>;
     }
 
@@ -87,7 +87,7 @@ export class TabBar extends Component{
 
 export class AppBar extends Component{
     render(){
-	return <div><style>{appbarstyles}</style>,<div class="mui-appbar"><slot/></div></div>;
+	return <div><style>{appbarstyles}</style><div class="mui-appbar"><slot/></div></div>;
     }
 
     static get is(){
@@ -115,7 +115,10 @@ export class MuiButton extends Component{
 	var btnclasses="mui-btn"+((this.primary)?" mui-btn--primary":"")+(this.danger? " mui-btn--danger":"")+(this.accent?" mui-btn--accent":"")+(this.flat?" mui-btn--flat":"")+(this.raised?" mui-btn--raised":"")+(this.fab?" mui-btn--fab":"")+(this.small?" mui-btn--small":"")+(this.large?" mui-btn--large":"");
 
 	var btn = this.disabled?<button class={btnclasses} disabled><slot/></button>:<button class={btnclasses}><slot/></button>;
-	return <div><style>{buttonstyles}</style>, this.disabled?<button class={btnclasses} disabled><slot/></button>:<button class={btnclasses}><slot/></button></div>;
+	return <div>
+	    <style>{buttonstyles}</style>
+	    {btn}
+	</div>;
     }
 
     rendered(){
@@ -137,7 +140,7 @@ export class MuiContainer extends Component{
 
     render(){
 
-	return <div><style>{containerstyles}</style>,<div class={this.fluid?"mui-container-fluid":"mui-container"}><slot/></div></div>;
+	return <div><style>{containerstyles}</style><div class={this.fluid?"mui-container-fluid":"mui-container"}><slot/></div></div>;
     }
 
     //There is no way to add the font-face to the shadow root(not implemented in webkit - https://bugs.chromium.org/p/chromium/issues/detail?id=336876), so we will attach it to the html head directly
@@ -171,7 +174,7 @@ export class MuiDivider extends Component{
 	if (this.bottom) dividerClass="mui--divider-bottom";
 	if (this.left) dividerClass="mui--divider-left";
 	if (this.right) dividerClass="mui--divider-right";
-	return <div><style>{dividerstyles}</style>,<div class={dividerClass}><slot/></div></div>;
+	return <div><style>{dividerstyles}</style><div class={dividerClass}><slot/></div></div>;
     }
 
     static get is(){
@@ -194,7 +197,7 @@ export class MuiDropdown extends Component{
 	
 	let lis = this.options.map((option,i)=><li><a href="#" data-order={i}>{option}</a></li>);
 	let ul=<ul class={classn}>{lis}</ul>;
-	return <div><style>{dropdownstyles}</style>,<div class="mui-dropdown"><slot></slot>{ul}</div></div>;
+	return <div><style>{dropdownstyles}</style><div class="mui-dropdown"><slot></slot>{ul}</div></div>;
 	
     }
 
@@ -245,13 +248,13 @@ export class MuiTextField extends Component{
 	var field=this.textarea?<textarea {...props}>{this.value}</textarea>:<input {...props}></input>;
 	
 	if (this.label){
-	    return <div><style>{fieldstyles}</style>,
+	    return <div><style>{fieldstyles}</style>
 		    <div class={fieldClass}>
 		{field}
 		    <label>{this.label}</label><div class="mui-error">{this.errorMessage}</div></div></div>;
 		
 	}
-	return <div><style>{fieldstyles}</style>,
+	return <div><style>{fieldstyles}</style>
 		<div class={fieldClass}>{field}<div class="mui-error">{this.errorMessage}</div></div></div>;
     }
 
@@ -292,7 +295,7 @@ export class MuiCheckBox extends Component{
 	if (this.checked)props.checked=true;
 	if (this.disabled)props.disabled=true;
 	let field=<input type="checkbox" {...props}></input>;
-	return <div><style>{checkboxradiostyles}</style>,<div class="mui-checkbox"><label>{field}{this.label}</label></div></div>;
+	return <div><style>{checkboxradiostyles}</style><div class="mui-checkbox"><label>{field}{this.label}</label></div></div>;
     }
 
     rendered(){
@@ -334,7 +337,7 @@ export class MuiRadioGroup extends Component{
 	    if (option.value == this.value) attrs.checked=true;
 	    return <div class="mui-radio"><label><input {...attrs}/></label>{option.label}</div>;
 	});
-	return <div><style>{checkboxradiostyles}</style>,<div id="radiogroup">{lis}</div></div>;
+	return <div><style>{checkboxradiostyles}</style><div id="radiogroup">{lis}</div></div>;
     }
     
     rendered(){
@@ -380,7 +383,7 @@ export class MuiSelect extends Component{
 		return <option {...attrs}>{option}</option>;
 	    }
 	});
-	return <div><style>{selectstyles}</style>,<div class="mui-select"><select>{lis}</select><label>{this.label}</label></div></div>;
+	return <div><style>{selectstyles}</style><div class="mui-select"><select>{lis}</select><label>{this.label}</label></div></div>;
     }
 
     rendered(){
@@ -418,7 +421,7 @@ export class MuiOverlay extends Component{
     }
 
     render(){
-	return <div><style>{overlaystyles}</style>,<div id="mui-overlay"><slot/></div></div>;
+	return <div><style>{overlaystyles}</style><div id="mui-overlay"><slot/></div></div>;
     }
 
     attributeChangedCallback(name,oldValue,newValue){
@@ -441,7 +444,7 @@ export class MuiOverlay extends Component{
 export class MuiPanel extends Component{
 
     render(){
-	return <div><style>{panelstyles}</style>,<div class="mui-panel"><slot/></div></div>;
+	return <div><style>{panelstyles}</style><div class="mui-panel"><slot/></div></div>;
     }
 
     static get is(){
@@ -464,7 +467,7 @@ export class MuiText extends Component{
 	let secClass="";
 	if (this.textColor) secClass="mui--text-"+this.textColor;
 	let clz = primClass+" "+secClass;
-	return <div><style>{textstyles}</style>,<div class={clz}><slot/></div></div>;
+	return <div><style>{textstyles}</style><div class={clz}><slot/></div></div>;
     }
 
     static get is(){
@@ -479,7 +482,7 @@ export class MuiRipple extends Component{
     }
 
     render(){
-	return <div><style>{buttonstyles}</style>,<div id="ripplecont"><slot/></div></div>;
+	return <div><style>{buttonstyles}</style><div id="ripplecont"><slot/></div></div>;
     }
 
     rendered(){
