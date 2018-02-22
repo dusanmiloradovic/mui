@@ -8,7 +8,7 @@ Currently library works only on browsers with enabled Shadow DOM v1 (Chrome and 
 
 All the implemented components with the examples can be found on [test.html](https://htmlpreview.github.io/?https://github.com/dusanmiloradovic/mui/blob/master/test-web.html) page of this repo.
 
-You need to put the shim and the polyfill from [webcompcomponets repository](https://github.com/webcomponents/webcomponentsjs) at the beginning of the page, do not bundle them:
+You need to put the shim and the polyfill from [webcompcomponets repository](https://github.com/webcomponents/webcomponentsjs) at the beginning of the page, do not bundle them with your main application script:
 
 ```shell
   <script src="https://unpkg.com/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
