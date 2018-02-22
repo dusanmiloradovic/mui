@@ -4,6 +4,7 @@
 
 MUI is a lightweight CSS framework that follows Google's Material Design guidelines.
 
+Currently library works only on browsers with enabled Shadow DOM v1 (Chrome and Safari, soon coming to Firefox).
 
 All the implemented components with the examples can be found on [!test.html(https://htmlpreview.github.io/?https://github.com/dusanmiloradovic/mui/blob/master/test-web.html)] page of this repo.
 
