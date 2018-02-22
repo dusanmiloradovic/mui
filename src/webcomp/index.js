@@ -1,6 +1,6 @@
-//import 'skatejs-web-components';
-import { define, vdom,h,prop } from 'skatejs';
-import * as skate from 'skatejs';
+import { props, withComponent } from 'skatejs';
+import withPreact from '@skatejs/renderer-preact';
+import { h } from 'preact';
 
 import robotofont from 'roboto_fontface';
 
@@ -23,13 +23,15 @@ import * as muidropdown from '../js/dropdown.js';
 import * as ripple from '../js/ripple.js';
 import * as muiselect from '../js/select.js';
 
-export class TabBar extends skate.Component{
+const Component = withComponent(withPreact());
+
+export class TabBar extends Component{
     
     static get props(){
 	return {
-	    tabs:prop.array({attribute:true}),
-	    active:prop.number({attribute:true}),
-	    justified:prop.boolean({attribute:true})
+	    tabs:props.array,
+	    active:props.number,
+	    justified:props.boolean
 	};
     }
     
@@ -48,8 +50,8 @@ export class TabBar extends skate.Component{
 	});
 
 	var ulClasses=this.justified?"mui-tabs__bar mui-tabs__bar--justified":"mui-tabs__bar";
-	return [<style>{tabbarstyles}</style>,
-		<ul class={ulClasses}>{lis}</ul>];
+	return <div><style>{tabbarstyles}</style>,
+		<ul class={ulClasses}>{lis}</ul></div>;
     }
 
     renderedCallback(){
@@ -83,9 +85,9 @@ export class TabBar extends skate.Component{
     }
 }
 
-export class AppBar extends skate.Component{
+export class AppBar extends Component{
     renderCallback(){
-	return [<style>{appbarstyles}</style>,<div class="mui-appbar"><slot/></div>];
+	return <div><style>{appbarstyles}</style>,<div class="mui-appbar"><slot/></div></div>;
     }
 
     static get is(){
@@ -93,19 +95,19 @@ export class AppBar extends skate.Component{
     }
 }
 
-export class MuiButton extends skate.Component{
+export class MuiButton extends Component{
 
     static get props(){
 	return {
-	    primary:prop.boolean({attribute:true}),
-	    danger:prop.boolean({attribute:true}),
-	    accent:prop.boolean({attribute:true}),
-	    disabled:prop.boolean({attribute:true}),
-	    flat:prop.boolean({attribute:true}),
-	    raised:prop.boolean({attribute:true}),
-	    fab:prop.boolean({attribute:true}),
-	    small:prop.boolean({attribute:true}),
-	    large:prop.boolean({attribute:true})
+	    primary:props.boolean,
+	    danger:props.boolean,
+	    accent:props.boolean,
+	    disabled:props.boolean,
+	    flat:props.boolean,
+	    raised:props.boolean,
+	    fab:props.boolean,
+	    small:props.boolean,
+	    large:props.boolean
 	};
     }
 
@@ -113,7 +115,7 @@ export class MuiButton extends skate.Component{
 	var btnclasses="mui-btn"+((this.primary)?" mui-btn--primary":"")+(this.danger? " mui-btn--danger":"")+(this.accent?" mui-btn--accent":"")+(this.flat?" mui-btn--flat":"")+(this.raised?" mui-btn--raised":"")+(this.fab?" mui-btn--fab":"")+(this.small?" mui-btn--small":"")+(this.large?" mui-btn--large":"");
 
 	var btn = this.disabled?<button class={btnclasses} disabled><slot/></button>:<button class={btnclasses}><slot/></button>;
-	return [<style>{buttonstyles}</style>, this.disabled?<button class={btnclasses} disabled><slot/></button>:<button class={btnclasses}><slot/></button>];
+	return <div><style>{buttonstyles}</style>, this.disabled?<button class={btnclasses} disabled><slot/></button>:<button class={btnclasses}><slot/></button></div>;
     }
 
     renderedCallback(){
@@ -125,17 +127,17 @@ export class MuiButton extends skate.Component{
     }
 }
 
-export class MuiContainer extends skate.Component{
+export class MuiContainer extends Component{
     
     static get props(){
 	return {
-	    fluid:prop.boolean({attribute:true})
+	    fluid:props.boolean
 	};
     }
 
     renderCallback(){
 
-	return [<style>{containerstyles}</style>,<div class={this.fluid?"mui-container-fluid":"mui-container"}><slot/></div>];
+	return <div><style>{containerstyles}</style>,<div class={this.fluid?"mui-container-fluid":"mui-container"}><slot/></div></div>;
     }
 
     //There is no way to add the font-face to the shadow root(not implemented in webkit - https://bugs.chromium.org/p/chromium/issues/detail?id=336876), so we will attach it to the html head directly
@@ -152,14 +154,14 @@ export class MuiContainer extends skate.Component{
     
 }
 
-export class MuiDivider extends skate.Component{
+export class MuiDivider extends Component{
 
     static get props(){
 	return{
-	    top:prop.boolean({attribute:true}),
-	    bottom:prop.boolean({attribute:true}),
-	    left:prop.boolean({attribute:true}),
-	    right:prop.boolean({attribute:true})
+	    top:props.boolean,
+	    bottom:props.boolean,
+	    left:props.boolean,
+	    right:props.boolean
 	};
     }
 
@@ -169,7 +171,7 @@ export class MuiDivider extends skate.Component{
 	if (this.bottom) dividerClass="mui--divider-bottom";
 	if (this.left) dividerClass="mui--divider-left";
 	if (this.right) dividerClass="mui--divider-right";
-	return[<style>{dividerstyles}</style>,<div class={dividerClass}><slot/></div>];
+	return <div><style>{dividerstyles}</style>,<div class={dividerClass}><slot/></div></div>;
     }
 
     static get is(){
@@ -177,13 +179,13 @@ export class MuiDivider extends skate.Component{
     }
 }
 
-export class MuiDropdown extends skate.Component{
+export class MuiDropdown extends Component{
 
     static get props(){
 	return {
-	    options:prop.array({attribute:true}),
-	    active:prop.number({attribute:true}),
-	    right:prop.boolean({attribute:true})
+	    options:props.array,
+	    active:props.number,
+	    right:props.boolean
 	};
     }
 
@@ -192,7 +194,7 @@ export class MuiDropdown extends skate.Component{
 	
 	let lis = this.options.map((option,i)=><li><a href="#" data-order={i}>{option}</a></li>);
 	let ul=<ul class={classn}>{lis}</ul>;
-	return [<style>{dropdownstyles}</style>,<div class="mui-dropdown"><slot></slot>{ul}</div>];
+	return <div><style>{dropdownstyles}</style>,<div class="mui-dropdown"><slot></slot>{ul}</div></div>;
 	
     }
 
@@ -221,17 +223,17 @@ export class MuiDropdown extends skate.Component{
     }
 }
 
-export class MuiTextField extends skate.Component{
+export class MuiTextField extends Component{
 
     static get props(){
 	return {
-	    placeholder:prop.string({attribute:true}),
-	    fixed:prop.boolean({attribute:true}),
-	    label:prop.string({attribute:true}),
-	    textarea:prop.boolean({attribute:true}),
-	    errorMessage:prop.string({attribute:true}),
-	    disabled:prop.boolean({attribute:true}),
-	    value:prop.string({attribute:true})
+	    placeholder:props.string,
+	    fixed:props.boolean,
+	    label:props.string,
+	    textarea:props.boolean,
+	    errorMessage:props.string,
+	    disabled:props.boolean,
+	    value:props.string
 	};
     }
 
@@ -243,14 +245,14 @@ export class MuiTextField extends skate.Component{
 	var field=this.textarea?<textarea {...props}>{this.value}</textarea>:<input {...props}></input>;
 	
 	if (this.label){
-	    return [<style>{fieldstyles}</style>,
+	    return <div><style>{fieldstyles}</style>,
 		    <div class={fieldClass}>
 		{field}
-		    <label>{this.label}</label><div class="mui-error">{this.errorMessage}</div></div>];
+		    <label>{this.label}</label><div class="mui-error">{this.errorMessage}</div></div></div>;
 		
 	}
-	return [<style>{fieldstyles}</style>,
-		<div class={fieldClass}>{field}<div class="mui-error">{this.errorMessage}</div></div>];
+	return <div><style>{fieldstyles}</style>,
+		<div class={fieldClass}>{field}<div class="mui-error">{this.errorMessage}</div></div></div>;
     }
 
     renderedCallback(){
@@ -273,15 +275,15 @@ export class MuiTextField extends skate.Component{
     }
 }
 
-export class MuiCheckBox extends skate.Component{
+export class MuiCheckBox extends Component{
 
     static get props(){
 	return {
-	    name:prop.string({attribute:true}),
-	    disabled:prop.boolean({attribute:true}),
-	    value:prop.string({attribute:true}),
-	    label:prop.string({attribute:true}),
-	    checked:prop.boolean({attribute:true})
+	    name:props.string,
+	    disabled:props.boolean,
+	    value:props.string,
+	    label:props.string,
+	    checked:props.boolean
 	};
     }
 
@@ -290,7 +292,7 @@ export class MuiCheckBox extends skate.Component{
 	if (this.checked)props.checked=true;
 	if (this.disabled)props.disabled=true;
 	let field=<input type="checkbox" {...props}></input>;
-	return [<style>{checkboxradiostyles}</style>,<div class="mui-checkbox"><label>{field}{this.label}</label></div>];
+	return <div><style>{checkboxradiostyles}</style>,<div class="mui-checkbox"><label>{field}{this.label}</label></div></div>;
     }
 
     renderedCallback(){
@@ -311,13 +313,13 @@ export class MuiCheckBox extends skate.Component{
     }
 }
 
-export class MuiRadioGroup extends skate.Component{
+export class MuiRadioGroup extends Component{
 
     static get props(){
 	return{
-	    options:prop.array({attribute:true}),
-	    name:prop.string({attribute:true}),
-	    value:prop.string({attribute:true})
+	    options:props.array,
+	    name:props.string,
+	    value:props.string
 	};
     }
 
@@ -332,7 +334,7 @@ export class MuiRadioGroup extends skate.Component{
 	    if (option.value == this.value) attrs.checked=true;
 	    return <div class="mui-radio"><label><input {...attrs}/></label>{option.label}</div>;
 	});
-	return [<style>{checkboxradiostyles}</style>,<div id="radiogroup">{lis}</div>];
+	return <div><style>{checkboxradiostyles}</style>,<div id="radiogroup">{lis}</div></div>;
     }
     
     renderedCallback(){
@@ -353,13 +355,13 @@ export class MuiRadioGroup extends skate.Component{
     }
 }
 
-export class MuiSelect extends skate.Component{
+export class MuiSelect extends Component{
 
     static get props(){
 	return {
-	    value:prop.string({attribute:true}),
-	    label:prop.string({attribute:true}),
-	    options:prop.array({attribute:true})
+	    value:props.string,
+	    label:props.string,
+	    options:props.array
 	};
     }
 
@@ -378,7 +380,7 @@ export class MuiSelect extends skate.Component{
 		return <option {...attrs}>{option}</option>;
 	    }
 	});
-	return [<style>{selectstyles}</style>,<div class="mui-select"><select>{lis}</select><label>{this.label}</label></div>];
+	return <div><style>{selectstyles}</style>,<div class="mui-select"><select>{lis}</select><label>{this.label}</label></div></div>;
     }
 
     renderedCallback(){
@@ -406,17 +408,17 @@ export class MuiSelect extends skate.Component{
 
 
 
-export class MuiOverlay extends skate.Component{
+export class MuiOverlay extends Component{
 
     static get props(){
 	return {
-	    open:prop.boolean({attribute:true}),
-	    animated:prop.boolean({attribute:true})
+	    open:props.boolean,
+	    animated:props.boolean
 	};
     }
 
     renderCallback(){
-	return [<style>{overlaystyles}</style>,<div id="mui-overlay"><slot/></div>];
+	return <div><style>{overlaystyles}</style>,<div id="mui-overlay"><slot/></div></div>;
     }
 
     attributeChangedCallback(name,oldValue,newValue){
@@ -436,10 +438,10 @@ export class MuiOverlay extends skate.Component{
 
 
 
-export class MuiPanel extends skate.Component{
+export class MuiPanel extends Component{
 
     renderCallback(){
-	return [<style>{panelstyles}</style>,<div class="mui-panel"><slot/></div>];
+	return <div><style>{panelstyles}</style>,<div class="mui-panel"><slot/></div></div>;
     }
 
     static get is(){
@@ -447,12 +449,12 @@ export class MuiPanel extends skate.Component{
     }
 }
 
-export class MuiText extends skate.Component{
+export class MuiText extends Component{
 
     static get props(){
 	return{
-	    textStyle:prop.string({attribute:true}),
-	    textColor:prop.string({attribute:true})
+	    textStyle:props.string,
+	    textColor:props.string
 	};
     }
 
@@ -462,7 +464,7 @@ export class MuiText extends skate.Component{
 	let secClass="";
 	if (this.textColor) secClass="mui--text-"+this.textColor;
 	let clz = primClass+" "+secClass;
-	return [<style>{textstyles}</style>,<div class={clz}><slot/></div>];
+	return <div><style>{textstyles}</style>,<div class={clz}><slot/></div></div>;
     }
 
     static get is(){
@@ -470,14 +472,14 @@ export class MuiText extends skate.Component{
     }
 }
 
-export class MuiRipple extends skate.Component{
+export class MuiRipple extends Component{
 
     static get is(){
 	return 'mui-ripple';
     }
 
     renderCallback(){
-	return [<style>{buttonstyles}</style>,<div id="ripplecont"><slot/></div>];
+	return <div><style>{buttonstyles}</style>,<div id="ripplecont"><slot/></div></div>;
     }
 
     renderedCallback(){
