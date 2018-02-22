@@ -35,7 +35,7 @@ export class TabBar extends Component{
 	};
     }
     
-    renderCallback() {
+    render() {
 	if (!this.active){
 	    this.active=0;
 	}
@@ -54,7 +54,7 @@ export class TabBar extends Component{
 		<ul class={ulClasses}>{lis}</ul></div>;
     }
 
-    renderedCallback(){
+    rendered(){
 	muitabs.initListeners(this.shadowRoot);
 
 	let tabsEl=this.shadowRoot.querySelector("ul");
@@ -86,7 +86,7 @@ export class TabBar extends Component{
 }
 
 export class AppBar extends Component{
-    renderCallback(){
+    render(){
 	return <div><style>{appbarstyles}</style>,<div class="mui-appbar"><slot/></div></div>;
     }
 
@@ -111,14 +111,14 @@ export class MuiButton extends Component{
 	};
     }
 
-    renderCallback(){
+    render(){
 	var btnclasses="mui-btn"+((this.primary)?" mui-btn--primary":"")+(this.danger? " mui-btn--danger":"")+(this.accent?" mui-btn--accent":"")+(this.flat?" mui-btn--flat":"")+(this.raised?" mui-btn--raised":"")+(this.fab?" mui-btn--fab":"")+(this.small?" mui-btn--small":"")+(this.large?" mui-btn--large":"");
 
 	var btn = this.disabled?<button class={btnclasses} disabled><slot/></button>:<button class={btnclasses}><slot/></button>;
 	return <div><style>{buttonstyles}</style>, this.disabled?<button class={btnclasses} disabled><slot/></button>:<button class={btnclasses}><slot/></button></div>;
     }
 
-    renderedCallback(){
+    rendered(){
 	ripple.initialize(this.shadowRoot.querySelector(".mui-btn"));
     }
 
@@ -135,14 +135,14 @@ export class MuiContainer extends Component{
 	};
     }
 
-    renderCallback(){
+    render(){
 
 	return <div><style>{containerstyles}</style>,<div class={this.fluid?"mui-container-fluid":"mui-container"}><slot/></div></div>;
     }
 
     //There is no way to add the font-face to the shadow root(not implemented in webkit - https://bugs.chromium.org/p/chromium/issues/detail?id=336876), so we will attach it to the html head directly
 
-    renderedCallback(){
+    rendered(){
 	var stEl = document.createElement("style");
 	stEl.innerHTML=robotofont+" body{font-family:'Roboto';}";
 	document.head.append(stEl);
@@ -165,7 +165,7 @@ export class MuiDivider extends Component{
 	};
     }
 
-    renderCallback(){
+    render(){
 	let dividerClass="mui-divider";
 	if (this.top) dividerClass="mui--divider-top";
 	if (this.bottom) dividerClass="mui--divider-bottom";
@@ -189,7 +189,7 @@ export class MuiDropdown extends Component{
 	};
     }
 
-    renderCallback(){
+    render(){
 	let classn = this.right?"mui-dropdown__menu mui-dropdown__menu--right":"mui-dropdown__menu";
 	
 	let lis = this.options.map((option,i)=><li><a href="#" data-order={i}>{option}</a></li>);
@@ -198,7 +198,7 @@ export class MuiDropdown extends Component{
 	
     }
 
-    renderedCallback(){
+    rendered(){
 	
 	setTimeout(()=>{
 	    let button=this.shadowRoot.host.firstElementChild;
@@ -237,7 +237,7 @@ export class MuiTextField extends Component{
 	};
     }
 
-    renderCallback(){
+    render(){
 	var fieldClass="mui-textfield";
 	if (this.label && !this.fixed && !this.value) fieldClass+=" mui-textfield--float-label";
 	let props = this.textarea?{}:{type:"text", value:this.value};
@@ -255,7 +255,7 @@ export class MuiTextField extends Component{
 		<div class={fieldClass}>{field}<div class="mui-error">{this.errorMessage}</div></div></div>;
     }
 
-    renderedCallback(){
+    rendered(){
 	let inputField = this.shadowRoot.querySelector("input");
 	if (!inputField) inputField=this.shadowRoot.querySelector("textarea");
 	if (!this.listenInitialized){
@@ -287,7 +287,7 @@ export class MuiCheckBox extends Component{
 	};
     }
 
-    renderCallback(){
+    render(){
 	let props={value:this.value,name:this.name};
 	if (this.checked)props.checked=true;
 	if (this.disabled)props.disabled=true;
@@ -295,7 +295,7 @@ export class MuiCheckBox extends Component{
 	return <div><style>{checkboxradiostyles}</style>,<div class="mui-checkbox"><label>{field}{this.label}</label></div></div>;
     }
 
-    renderedCallback(){
+    rendered(){
 	var inputEl = this.shadowRoot.querySelector("input");
 	if (!this.eventInitialized){
 	    this.eventInitialized=true;
@@ -323,7 +323,7 @@ export class MuiRadioGroup extends Component{
 	};
     }
 
-    renderCallback(){
+    render(){
 	if (!this.name){
 	    this.name="radio-group-1";
 	}
@@ -337,7 +337,7 @@ export class MuiRadioGroup extends Component{
 	return <div><style>{checkboxradiostyles}</style>,<div id="radiogroup">{lis}</div></div>;
     }
     
-    renderedCallback(){
+    rendered(){
 	var el = this.shadowRoot.querySelector("#radiogroup");
 	if (!this.listenerInitialized){
 	    this.listenerInitialized=true;
@@ -365,7 +365,7 @@ export class MuiSelect extends Component{
 	};
     }
 
-    renderCallback(){
+    render(){
 	let lis = this.options.map((option)=>{
 	    if (option.group){
 		let innerOptions=option.groupoptions.map((o)=>{
@@ -383,7 +383,7 @@ export class MuiSelect extends Component{
 	return <div><style>{selectstyles}</style>,<div class="mui-select"><select>{lis}</select><label>{this.label}</label></div></div>;
     }
 
-    renderedCallback(){
+    rendered(){
 	var el=this.shadowRoot.querySelector("select");
 	if (!this.listenerInitalized){
 	    this.listenerInitalized=true;
@@ -417,7 +417,7 @@ export class MuiOverlay extends Component{
 	};
     }
 
-    renderCallback(){
+    render(){
 	return <div><style>{overlaystyles}</style>,<div id="mui-overlay"><slot/></div></div>;
     }
 
@@ -440,7 +440,7 @@ export class MuiOverlay extends Component{
 
 export class MuiPanel extends Component{
 
-    renderCallback(){
+    render(){
 	return <div><style>{panelstyles}</style>,<div class="mui-panel"><slot/></div></div>;
     }
 
@@ -458,7 +458,7 @@ export class MuiText extends Component{
 	};
     }
 
-    renderCallback(){
+    render(){
 	let primClass="";
 	if (this.textStyle) primClass="mui--text-"+this.textStyle;
 	let secClass="";
@@ -478,11 +478,11 @@ export class MuiRipple extends Component{
 	return 'mui-ripple';
     }
 
-    renderCallback(){
+    render(){
 	return <div><style>{buttonstyles}</style>,<div id="ripplecont"><slot/></div></div>;
     }
 
-    renderedCallback(){
+    rendered(){
 	ripple.initialize(this.shadowRoot.querySelector("#ripplecont"));
     }
 }
