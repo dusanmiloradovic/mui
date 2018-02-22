@@ -3,7 +3,7 @@
     <head>
       <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=yes">
       <script src="node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
-      <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+      <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="dist/mui-webcomp-full.js"></script>
     <script>
       importAllComponents();
@@ -17,15 +17,15 @@
 		 console.log("Click event pierces the shadow root");
 	     });
 	     document.querySelector("mui-dropdown").addEventListener("selection",function(ev){
-		 console.log("Dropdow selection index:"+this.active);
+		 console.log("Dropdown selection index:"+this.active);
 	     });
 	     document.querySelector("#open-overlay").addEventListener("click",
 								      function(ev){
-									  document.querySelector("mui-overlay").open=true;
+									  document.querySelector("mui-overlay").setAttribute("open",true);
 								      });
 	     document.querySelector("#close-overlay").addEventListener("click",
 								      function(ev){
-									  document.querySelector("mui-overlay").open=false;
+									  document.querySelector("mui-overlay").removeAttribute("open");
 								      });
 	 });
 	 

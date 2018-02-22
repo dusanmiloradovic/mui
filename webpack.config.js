@@ -12,13 +12,22 @@ module.exports = {
 	skatejs:{
 	    commonjs:'skatejs',
 	    commonjs2:'skatejs',
-	    amd:'skatejs',
-	    root:'skate'
+	    amd:'skatejs'
 	},
-	roboto_fontface:{
+	"roboto-fontface":{
 	    commonjs:'roboto-fontface',
 	    commonjs2:'roboto-fontface',
 	    amd:'roboto-fontface'
+	},
+	"preact":{
+	    commonjs:"preact",
+	    commonjs2:"preact",
+	    amd:"preact"
+	},
+	"@skatejs/renderer-preact":{
+	    commonjs:"@skatejs/renderer-preact",
+	    commonjs2:"@skatejs/renderer-preact",
+	    amd:"@skatejs/renderer-preact"
 	}
     },
     module: {

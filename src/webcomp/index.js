@@ -426,7 +426,7 @@ export class MuiOverlay extends Component{
 
     attributeChangedCallback(name,oldValue,newValue){
 	if (name == "open"){
-	    if (newValue == "" && oldValue == null){
+	    if (newValue && oldValue == null){
 		document.body.style.overflow="hidden";
 	    }else{
 		document.body.style.overflow="";
