@@ -2,8 +2,5 @@
  "plugins":[[
     "transform-react-jsx", {"pragma": "h"}],
      ["transform-object-rest-spread"]],
-  "presets":["env",{
-	"targets":["last 2 versions"]
-  }]
-
+   "presets":["env"]
 }
