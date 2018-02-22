@@ -1,12 +1,16 @@
 const path = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-devtool:'inline-source-map',
+    devtool:'source-map',
     entry: './src/webcomp/index.js',
     output: {
-	path: path.resolve(__dirname, "dist"), 
+	path: path.resolve(__dirname, "distfull"), 
 	filename: 'mui-webcomp-full.js'
     },
+    plugins: [
+	new UglifyJsPlugin({sourceMap:true})
+    ],
     module: {
 	loaders: [
 	    {
