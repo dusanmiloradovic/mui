@@ -2,7 +2,7 @@ import { props, withComponent } from 'skatejs';
 import withPreact from '@skatejs/renderer-preact';
 import { h } from 'preact';
 
-import  'style-loader!css-loader!roboto-fontface';
+import  'roboto-fontface';
 
 import tabbarstyles from '../sass/mui/tabbar.scss';
 import appbarstyles from '../sass/mui/appbar.scss';

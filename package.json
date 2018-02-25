@@ -34,6 +34,7 @@
 						"babel-register": "^6.26.0",
 						"babelify": "^7.3.0",
 						"css-loader": "^0.28.7",
+						"extract-text-webpack-plugin": "^3.0.2",
 						"file-loader": "^0.11.2",
 						"node-sass": "^4.7.2",
 						"sass-loader": "^6.0.6",
@@ -47,7 +48,6 @@
 						"webpack": "^3.5.5"
 			},
 			"peerDependencies": {
-						"roboto-fontface": "^0.8.0",
 						"@skatejs/renderer-preact": "^0.2.5",
 						"preact": "^8.2.7",
 						"skatejs": "^5.1.1",
