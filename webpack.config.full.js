@@ -23,16 +23,14 @@ module.exports = {
 		    {loader:'css-loader'},
 		    {loader:'sass-loader'}
 		]
-	    }
-	    ,
+	    },
 	    {
 		test:/\.css$/,
 		use:[
 		    {loader:'style-loader'},
 		    {loader:'css-loader'}
 		    ]
-	    }
-	    ,
+	    },
 	    {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader", query: {
 		outputPath: 'static/images/'
 	    }},
