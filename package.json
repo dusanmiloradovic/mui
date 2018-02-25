@@ -1,10 +1,11 @@
 {
-			"version": "0.10.1",
+			"version": "0.11.5",
 			"license": "MIT",
 			"description": "MUICSS web components",
 			"homepage": "https://www.muicss.com",
 			"name": "muicss-webcomp",
 			"main": "dist/mui-webcomp.js",
+			"unpkg": "distfull/mui-webcomp-full.js",
 			"bugs": {
 						"url": "https://github.com/dusanmiloradovic/mui/issues",
 						"email": "contact@muicss.com"
@@ -14,8 +15,8 @@
 						"url": "https://github.com/dusanmiloradovic/mui.git"
 			},
 			"scripts": {
-			    "build-ws": "rm -rf dist && webpack",
-			    "build-ws-full": "rm -rf dist && webpack --config webpack.config.full.js"
+						"build-ws": "rm -rf dist && webpack",
+						"build-ws-full": "rm -rf distfull && webpack --config webpack.config.full.js -p"
 			},
 			"devDependencies": {
 						"babel-core": "^6.26.0",
@@ -34,22 +35,23 @@
 						"babelify": "^7.3.0",
 						"css-loader": "^0.28.7",
 						"file-loader": "^0.11.2",
+						"node-sass": "^4.7.2",
 						"sass-loader": "^6.0.6",
 						"streamqueue": "^1.1.1",
 						"stringify": "^5.1.0",
 						"style-loader": "^0.18.2",
 						"synthetic-dom-events": "^0.3.0",
 						"to-string-loader": "^1.1.5",
-			    "url-loader": "^0.5.9",
-			    "node-sass": "^4.7.2",
+						"uglifyjs-webpack-plugin": "^1.2.0",
+						"url-loader": "^0.5.9",
 						"webpack": "^3.5.5"
 			},
 			"peerDependencies": {
 						"roboto-fontface": "^0.8.0",
 						"@skatejs/renderer-preact": "^0.2.5",
 						"preact": "^8.2.7",
-			    "skatejs": "^5.1.1",
-			    "@webcomponents/webcomponentsjs": "^1.1.0"
+						"skatejs": "^5.1.1",
+						"@webcomponents/webcomponentsjs": "^1.1.0"
 			},
 			"engines": {
 						"npm": ">=3.3.12"
