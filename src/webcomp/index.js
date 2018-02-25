@@ -2,7 +2,7 @@ import { props, withComponent } from 'skatejs';
 import withPreact from '@skatejs/renderer-preact';
 import { h } from 'preact';
 
-import robotofont from 'roboto-fontface';
+import  'style-loader!css-loader!roboto-fontface';
 
 import tabbarstyles from '../sass/mui/tabbar.scss';
 import appbarstyles from '../sass/mui/appbar.scss';
@@ -139,17 +139,11 @@ export class MuiContainer extends Component{
     }
 
     render(){
-
-	return <div><style>{containerstyles}</style><div class={this.fluid?"mui-container-fluid":"mui-container"}><slot/></div></div>;
+	let st =containerstyles+" :host{font-family:Roboto;}";
+	return <div><style>{st}</style><div class={this.fluid?"mui-container-fluid":"mui-container"}><slot/></div></div>;
     }
 
     //There is no way to add the font-face to the shadow root(not implemented in webkit - https://bugs.chromium.org/p/chromium/issues/detail?id=336876), so we will attach it to the html head directly
-
-    rendered(){
-	var stEl = document.createElement("style");
-	stEl.innerHTML=robotofont+" body{font-family:'Roboto';}";
-	document.head.append(stEl);
-    }
 
     static get is(){
 	return 'mui-container';

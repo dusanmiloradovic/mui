@@ -15,13 +15,6 @@ devtool:'inline-source-map',
 		loader: 'babel-loader'
 	    },
 	    {
-		test: /\.css$/,
-		use: [
-		    'to-string-loader',
-		    'css-loader'
-		]
-	    },
-	    {
 		test: /\.scss$/,
 		use:[
 		    {loader:'to-string-loader'},
