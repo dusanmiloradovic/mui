@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=yes">
+      <script src="node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+      <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="dist/full.js"></script>
+
+	<script>window.addEventListener("paneChange",function(ev){
+	     console.log(ev);
+	 });
+	 document.addEventListener("DOMContentLoaded", function(event) {
+	     console.log("DOM fully loaded and parsed");
+	     document.querySelector("mui-button").addEventListener("click",function(ev){
+		 console.log("Click event pierces the shadow root");
+	     });
+	     document.querySelector("mui-dropdown").addEventListener("selection",function(ev){
+		 console.log("Dropdown selection index:"+this.active);
+	     });
+	     document.querySelector("#open-overlay").addEventListener("click",
+								      function(ev){
+									  document.querySelector("mui-overlay").setAttribute("open",true);
+								      });
+	     document.querySelector("#close-overlay").addEventListener("click",
+								      function(ev){
+									  document.querySelector("mui-overlay").removeAttribute("open");
+								      });
+	 });
+	 
+
+	</script>
+	<!--style>
+	     tab-bar{
+	   --tab-bg-color:blue;
+	   --tab-color:white;
+	   --tab-active-color:yellow;
+	   --tab-font-size:18px;
+	     }
+	     </style-->
+    </head>
+    <body>
+	<div>
+
+	</div>
+	<mui-container fluid>
+	    <app-bar><div>APPLICATION LABEL</div></app-bar>
+	    <tab-bar justified tabs='["Uno","Dos","Tres","Quattro"]'></tab-bar>
+	    <div>
+		<mui-button>Button</mui-button>
+		<mui-button primary>Button</mui-button>
+		<mui-button danger>Button</mui-button>
+		<mui-button accent>Button</mui-button>
+	    </div>
+	    <div>
+		<mui-button disabled>Button</mui-button>
+		<mui-button primary disabled>Button</mui-button>
+		<mui-button danger disabled>Button</mui-button>
+		<mui-button accent disabled>Button</mui-button>
+	    </div>
+	    <div>
+		<mui-button flat>Button</mui-button>
+		<mui-button flat primary>Button</mui-button>
+		<mui-button flat danger>Button</mui-button>
+		<mui-button flat accent>Button</mui-button>
+	    </div>
+	    <div>
+		<mui-button flat disabled>Button</mui-button>
+		<mui-button flat primary disabled>Button</mui-button>
+		<mui-button flat danger disabled>Button</mui-button>
+		<mui-button flat accent disabled>Button</mui-button>
+	    </div>
+	    <div>
+		<mui-button raised>Button</mui-button>
+		<mui-button raised primary>Button</mui-button>
+		<mui-button raised danger>Button</mui-button>
+		<mui-button raised accent>Button</mui-button>
+	    </div>
+	    <div>
+		<mui-button raised disabled>Button</mui-button>
+		<mui-button raised primary disabled>Button</mui-button>
+		<mui-button raised danger disabled>Button</mui-button>
+		<mui-button raised accent disabled>Button</mui-button>
+	    </div>
+	    <div>
+		<mui-button fab>+</mui-button>
+		<mui-button fab primary>+</mui-button>
+		<mui-button fab danger>+</mui-button>
+		<mui-button fab accent>+</mui-button>
+	    </div>
+	    <div>
+		<mui-button fab disabled>+</mui-button>
+		<mui-button fab primary disabled>+</mui-button>
+		<mui-button fab danger disabled>+</mui-button>
+		<mui-button fab accent disabled>+</mui-button>
+	    </div>
+	    <div>Content 1</div><mui-divider></mui-divider><div>Content2</div>
+	    <div>Content 1</div><mui-divider top><div>Content2</div></mui-divider>
+	    <mui-dropdown right options='["Option 1","Option 2","Option 3"]'>
+		<mui-button primary>Options &#9660;</mui-button>
+	    </mui-dropdown>
+	    <mui-textfield label="With the initial value" value="Initial value"></mui-textfield>
+	    <mui-textfield label="Fixed" fixed></mui-textfield>
+	    <mui-textfield label="Not Fixed"></mui-textfield>
+	    <mui-textfield placeholder="Placeholder" value="With Placeholder"></mui-textfield>
+	    <mui-textfield placeholder="Placeholder"></mui-textfield>
+	    <mui-textfield textarea label="Text Area"></mui-textfield>
+	    <mui-textfield label="With the initial value" value="Initial value" error-message="Not a valid value"></mui-textfield>
+	    <mui-checkbox label="Check 1" name="checkform"></mui-checkbox>
+	    <mui-checkbox label="Check 2" name="checkform" disabled></mui-checkbox>
+	    <mui-radiogroup name="rg" value="first" options='[{"value":"first","label":"First"},{"value":"second","label":"Second"},{"value":"third","label":"Third","disabled":true}]'></mui-radiogroup>
+	    <mui-select label="Choose" options='["One","Two","Three"]'></mui-select>
+	    <mui-select label="Choose" options='["One","Two","Three"]' value="Two"></mui-select>
+	    <mui-select label="Choose from groups" options='[{"group":"Group1","groupoptions":["a","b"]},{"group":"Group2","groupoptions":["c","d","e"]}]'></mui-select>
+	    <mui-overlay>
+		<div style="height:100%;width:100%">
+		    <div style="width:500px;height:400px;margin:auto;position:relative;background:white;top: 50%;transform: translateY(-50%);">
+			<div style="font-size:30px;color:red;position:absolute;top:50px;left:25%;">This is a dialog template</div>
+			<mui-button id="close-overlay" primary style="position:absolute;bottom:50px;right:50px;">Close</mui-button>
+		    </div>
+		</div> 
+	    </mui-overlay>
+	    <mui-button id="open-overlay" primary>Open Overlay</mui-button>
+	    <mui-panel>
+		<mui-textfield label="Field1" value="Initial value"></mui-textfield>
+		<mui-textfield label="Field2" fixed></mui-textfield>
+		<mui-textfield label="Field3"></mui-textfield>
+		<mui-button danger>Button</mui-button>
+	    </mui-panel>
+	    <mui-text text-style="display4">Display4</mui-text>
+	    <mui-text text-style="display3">Display3</mui-text>
+	    <mui-text text-style="display2">Display2</mui-text>
+	    <mui-text text-style="display1">Display1</mui-text>
+	    <mui-text text-style="headline">Headline</mui-text>
+	    <mui-text text-style="title">Title</mui-text>
+	    <mui-text text-style="title">Subhead</mui-text>
+	    <mui-text text-style="body2">Body2</mui-text>
+	    <mui-text text-style="body1">Body1</mui-text>
+	    <mui-text text-style="caption">Caption</mui-text>
+	    <mui-text text-style="menu">Menu</mui-text>
+	    <mui-text text-style="button">Button</mui-text>
+	    
+	    <mui-text text-color="dark">Dark</mui-text>
+	    <mui-text text-color="dark-secondary">Dark Secondary</mui-text>
+	    <mui-text text-color="dark-hint">Dark Hint</mui-text>
+	    <div style="background-color:#444;">
+	      <mui-text text-color="light">Light</mui-text>
+	      <mui-text text-color="light-secondary">Light Secondary</mui-text>
+	      <mui-text text-color="light-hint">Light Hint</mui-text>
+	    </div>
+
+	    <mui-text text-color="accent">Accent</mui-text>
+	    <mui-text text-color="accent-secondary">Accent Secondary</mui-text>
+	    <mui-text text-color="accent-hint">Accent Hint</mui-text>
+
+	    <mui-text text-color="black">Black</mui-text>
+	    <mui-text text-color="white" style="background-color:#444;display:block;">White</mui-text>
+	    <mui-text text-color="danger">Danger</mui-text>
+	    <mui-ripple>
+	      <div style="height:30px;padding:5px">Ripple Element</div>
+	    </mui-ripple>
+	</mui-container>
+    </body>
+</html>

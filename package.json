@@ -51,7 +51,8 @@
 						"@skatejs/renderer-preact": "^0.2.5",
 						"preact": "^8.2.7",
 						"skatejs": "^5.1.1",
-						"@webcomponents/webcomponentsjs": "^1.1.0"
+						"@webcomponents/webcomponentsjs": "^1.1.0",
+						"roboto-fontface": "^0.8.0"
 			},
 			"engines": {
 						"npm": ">=3.3.12"

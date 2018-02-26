@@ -24,6 +24,11 @@ module.exports = {
 	    commonjs:"@skatejs/renderer-preact",
 	    commonjs2:"@skatejs/renderer-preact",
 	    amd:"@skatejs/renderer-preact"
+	},
+	"roboto-fontface":{
+	    commonjs:"roboto-fontface",
+	    commonjs2:"roboto-fontface",
+	    amd:"roboto-fontface"
 	}
     },
     module: {
