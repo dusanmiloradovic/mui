@@ -1,19 +1,19 @@
 {
-			"version": "0.12.0",
+			"version": "0.12.1",
 			"license": "MIT",
 			"description": "MUICSS web components",
 			"homepage": "https://www.muicss.com",
 			"name": "muicss-webcomp",
 			"main": "dist/mui-webcomp.js",
-    "unpkg": "distfull/mui-webcomp-full.js",
-    "keywords":[
-	"material",
-	"components",
-	"web components",
-	"skate",
-	"skatejs",
-	"mui"
-    ],
+			"unpkg": "distfull/mui-webcomp-full.js",
+			"keywords": [
+						"material",
+						"components",
+						"web components",
+						"skate",
+						"skatejs",
+						"mui"
+			],
 			"bugs": {
 						"url": "https://github.com/dusanmiloradovic/mui/issues",
 						"email": "contact@muicss.com"
