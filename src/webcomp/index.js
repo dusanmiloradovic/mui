@@ -410,7 +410,7 @@ export class MuiOverlay extends Component{
 
     static get props(){
 	return {
-	    open:props.boolean,
+	    open:{...props.boolean, ...{attribute:true}},
 	    animated:props.boolean
 	};
     }

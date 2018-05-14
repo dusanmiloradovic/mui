@@ -15,11 +15,48 @@ You need to put the shim and the polyfill from [webcompcomponets repository](htt
   <script src="https://unpkg.com/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 ```
 
-**Install with NPM:**
+**Install with NPM and Webpack:**
 
 ```shell
 $ npm install --save muicss-webcomp
 ```
+
+When you install the library with NPM, it has the roboto-fontface package as a peer dependency. To correctly load the fonts, you have to enable style loader in your webpack configuration, for example:
+```
+const path = require('path');
+
+module.exports = {
+    entry: './index.js',
+    output: {
+	path: path.resolve(__dirname, "dist"),
+	publicPath:"./dist/",
+	filename: 'full.js'
+    },
+    module: {
+	loaders: [
+	    {
+		test: /\.js$/,
+		exclude: /node_modules/,
+		loader: 'babel-loader'
+	    },
+	    {
+		test:/\.css$/,
+		use:[
+		    {loader:'style-loader'},
+		    {loader:'css-loader'}
+		    ]
+	    },
+	    {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader", query: {
+		outputPath: 'static/images/'
+	    }},
+	    {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader", query: {
+		outputPath: 'static/images/'
+	    }}
+	]
+    }
+};
+```
+You can find full sample project in the example directory
 
 **Use from unpkg:**
 ```shell

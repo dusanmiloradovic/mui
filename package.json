@@ -1,11 +1,19 @@
 {
-			"version": "0.11.8",
+			"version": "0.12.3",
 			"license": "MIT",
 			"description": "MUICSS web components",
 			"homepage": "https://www.muicss.com",
 			"name": "muicss-webcomp",
 			"main": "dist/mui-webcomp.js",
 			"unpkg": "distfull/mui-webcomp-full.js",
+			"keywords": [
+						"material",
+						"components",
+						"web components",
+						"skate",
+						"skatejs",
+						"mui"
+			],
 			"bugs": {
 						"url": "https://github.com/dusanmiloradovic/mui/issues",
 						"email": "contact@muicss.com"
@@ -51,7 +59,8 @@
 						"@skatejs/renderer-preact": "^0.2.5",
 						"preact": "^8.2.7",
 						"skatejs": "^5.1.1",
-						"@webcomponents/webcomponentsjs": "^1.1.0"
+						"@webcomponents/webcomponentsjs": "^1.1.0",
+						"roboto-fontface": "^0.8.0"
 			},
 			"engines": {
 						"npm": ">=3.3.12"

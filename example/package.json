@@ -1,0 +1,24 @@
+{
+  "name": "test-mui-webcomp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf dist && webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@skatejs/renderer-preact": "^0.2.5",
+    "@webcomponents/webcomponentsjs": "^1.1.0",
+    "preact": "^8.2.7",
+    "roboto-fontface": "^0.9.0",
+    "skatejs": "^5.1.1"
+  },
+  "devDependencies": {
+    "css-loader": "^0.28.10",
+    "style-loader": "^0.20.2",
+    "webpack": "^3.5.5"
+  }
+}
