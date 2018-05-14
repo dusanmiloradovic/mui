@@ -230,14 +230,15 @@ export class MuiTextField extends Component{
 	    textarea:props.boolean,
 	    errorMessage:props.string,
 	    disabled:props.boolean,
-	    value:props.string
+	    value:props.string,
+	    type:props.string
 	};
     }
 
     render(){
 	var fieldClass="mui-textfield";
 	if (this.label && !this.fixed && !this.value) fieldClass+=" mui-textfield--float-label";
-	let props = this.textarea?{}:{type:"text", value:this.value};
+	let props = this.textarea?{}:{type:this.type?this.type:"text", value:this.value};
 	if (this.disabled) props.disabled=true;
 	var field=this.textarea?<textarea {...props}>{this.value}</textarea>:<input {...props}></input>;
 	
