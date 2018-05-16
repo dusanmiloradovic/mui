@@ -11,11 +11,13 @@ import containerstyles from '../sass/mui/containers.scss';
 import dividerstyles from '../sass/mui/dividers.scss';
 import dropdownstyles from '../sass/mui/dropdown.scss';
 import fieldstyles from '../sass/mui/field.scss';
-import checkboxradiostyles from '../sass/mui/checkboxandradio.scss';
+//import checkboxradiostyles from '../sass/mui/checkboxandradio.scss';
 import selectstyles from '../sass/mui/select.scss';
 import overlaystyles from '../sass/mui/overlay.scss';
 import panelstyles from '../sass/mui/panel.scss';
 import textstyles from '../sass/mui/text.scss';
+import checkboxstyles from '../sass/external/checkbox.scss';
+import radiostyles from '../sass/external/radio.scss';
 
 
 import * as muitabs from '../js/tabs.js';
@@ -290,7 +292,12 @@ export class MuiCheckBox extends Component{
 	if (this.checked)props.checked=true;
 	if (this.disabled)props.disabled=true;
 	let field=<input type="checkbox" {...props}></input>;
-	return <div><style>{checkboxradiostyles}</style><div class="mui-checkbox"><label>{field}{this.label}</label></div></div>;
+	return <div>
+	    <style>{checkboxstyles}</style>
+	    <label class="material-checkbox">
+	    {field}
+	    <span>{this.label}</span>
+	    </label></div>;
     }
 
     rendered(){
@@ -327,12 +334,12 @@ export class MuiRadioGroup extends Component{
 	}
 	//this is local in shadow dom, so it is ok to hardcode the value
 	let lis = this.options.map((option,i)=>{
-	    let attrs = {name:this.name, type:"radio",value:option.value};
+	    let attrs = {name:this.name, type:"radio",value:option.value,id:i};
 	    if (option.disabled)attrs.disabled=true;
 	    if (option.value == this.value) attrs.checked=true;
-	    return <div class="mui-radio"><label><input {...attrs}/></label>{option.label}</div>;
+	    return <div class="md-radio"><input {...attrs}/><label {...{for:i}}>{option.label}</label></div>;
 	});
-	return <div><style>{checkboxradiostyles}</style><div id="radiogroup">{lis}</div></div>;
+	return <div><style>{radiostyles}</style><div id="radiogroup">{lis}</div></div>;
     }
     
     rendered(){
