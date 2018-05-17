@@ -4,7 +4,8 @@
       <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=yes">
       <script src="node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
       <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="distfull/mui-webcomp-full.js"></script>
+      <script src="distfull/mui-webcomp-full.js"></script>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <script>
       importAllComponents();
       </script>
@@ -108,6 +109,13 @@
 	    <mui-textfield label="Password" type="password"></mui-textfield>
 	    <mui-textfield textarea label="Text Area"></mui-textfield>
 	    <mui-textfield label="With the initial value" value="Initial value" error-message="Not a valid value"></mui-textfield>
+
+	    <div style="position:relative">
+	      <i class="fas fa-user-alt" style="position:absolute;top:25px;left:0px;color:rgba(0,0,0,.54)"></i>
+	      <mui-textfield label="Padding" padding-left="25px" value="you can put icon on the left"></mui-textfield>
+	    </div>
+
+	      
 	    <mui-checkbox label="Check 1" name="checkform"></mui-checkbox>
 	    <mui-checkbox label="Check 2" name="checkform" disabled></mui-checkbox>
 	    <mui-radiogroup name="rg" value="first" options='[{"value":"first","label":"First"},{"value":"second","label":"Second"},{"value":"third","label":"Third","disabled":true}]'></mui-radiogroup>

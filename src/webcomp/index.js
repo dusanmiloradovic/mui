@@ -233,7 +233,8 @@ export class MuiTextField extends Component{
 	    errorMessage:props.string,
 	    disabled:props.boolean,
 	    value:props.string,
-	    type:props.string
+	    type:props.string,
+	    paddingLeft:props.string
 	};
     }
 
@@ -242,13 +243,22 @@ export class MuiTextField extends Component{
 	if (this.label && !this.fixed && !this.value) fieldClass+=" mui-textfield--float-label";
 	let props = this.textarea?{}:{type:this.type?this.type:"text", value:this.value};
 	if (this.disabled) props.disabled=true;
-	var field=this.textarea?<textarea {...props}>{this.value}</textarea>:<input {...props}></input>;
+
+	let labelStyle={};
 	
+	if (this.paddingLeft){
+	    console.log("bla");
+	    props.style="padding-left:"+this.paddingLeft;
+	    labelStyle.style="padding-left:"+this.paddingLeft;
+	}
+	
+	var field=this.textarea?<textarea {...props}>{this.value}</textarea>:<input {...props}></input>;
+
 	if (this.label){
 	    return <div><style>{fieldstyles}</style>
 		    <div class={fieldClass}>
 		{field}
-		    <label>{this.label}</label><div class="mui-error">{this.errorMessage}</div></div></div>;
+		<label {...labelStyle}>{this.label}</label><div class="mui-error">{this.errorMessage}</div></div></div>;
 		
 	}
 	return <div><style>{fieldstyles}</style>
