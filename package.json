@@ -1,5 +1,5 @@
 {
-			"version": "0.12.8",
+			"version": "0.12.9",
 			"license": "MIT",
 			"description": "MUICSS web components",
 			"homepage": "https://www.muicss.com",
@@ -70,7 +70,6 @@
 						"@webcomponents/webcomponentsjs": "^1.1.0",
 						"ajv": "^6.1.1",
 						"preact": "^8.2.7",
-						"roboto-fontface": "^0.8.0",
 						"skatejs": "^5.1.1"
 			}
 }

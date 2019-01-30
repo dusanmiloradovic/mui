@@ -21,6 +21,7 @@ You need to put the shim and the polyfill from [webcompcomponets repository](htt
 $ npm install --save muicss-webcomp
 ```
 
+This package doesn't include the roboto fonts, you have to install them separately
 
 
 **Use from unpkg:**
