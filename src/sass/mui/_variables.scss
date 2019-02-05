@@ -135,7 +135,7 @@ $mui-btn-default-bg-color:            mui-color('white') !default;
 $mui-btn-default-font-color:          $mui-base-font-color !default;
 $mui-btn-default-ripple-color:        darken(mui-color('white'), 35%) !default;
 
-$mui-btn-primary-bg-color:            $mui-primary-color !default;
+$mui-btn-primary-bg-color:            var(--primary-color,$mui-primary-color) !default;
 $mui-btn-primary-font-color:          mui-color('white') !default;
 $mui-btn-primary-ripple-color:        mui-color('white') !default;
 
@@ -147,7 +147,7 @@ $mui-btn-dark-bg-color:               mui-color('grey', '800') !default;
 $mui-btn-dark-font-color:             mui-color('white') !default;
 $mui-btn-dark-ripple-color:           mui-color('white') !default;
 
-$mui-btn-accent-bg-color:             $mui-accent-color !default;
+$mui-btn-accent-bg-color:             var(--light-primary-color,$mui-accent-color) !default;
 $mui-btn-accent-font-color:           mui-color('white') !default;
 $mui-btn-accent-ripple-color:         mui-color('white') !default;
 

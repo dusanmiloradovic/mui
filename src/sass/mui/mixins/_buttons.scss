@@ -6,7 +6,8 @@
   &:focus,
   &:active {
     color: $font-color;
-    background-color: lighten($bg-color, 5%);
+    background-color: $bg-color;
+    filter: brightness(105%);
   }
 
   &[disabled] {
