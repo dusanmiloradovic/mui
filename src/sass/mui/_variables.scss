@@ -147,7 +147,7 @@ $mui-btn-dark-bg-color:               mui-color('grey', '800') !default;
 $mui-btn-dark-font-color:             mui-color('white') !default;
 $mui-btn-dark-ripple-color:           mui-color('white') !default;
 
-$mui-btn-accent-bg-color:             var(--light-primary-color,$mui-accent-color) !default;
+$mui-btn-accent-bg-color:             var(--accent-color,$mui-accent-color) !default;
 $mui-btn-accent-font-color:           mui-color('white') !default;
 $mui-btn-accent-ripple-color:         mui-color('white') !default;
 
