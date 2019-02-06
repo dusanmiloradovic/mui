@@ -6,7 +6,7 @@ MUI is a lightweight CSS framework that follows Google's Material Design guideli
 
 Currently library works only on browsers with enabled Shadow DOM v1 (Chrome and Safari, soon coming to Firefox).
 
-All the implemented components with the examples can be found on [test.html](https://htmlpreview.github.io/?https://github.com/dusanmiloradovic/mui/blob/master/test-web.html) page of this repo.
+All the implemented components with the examples can be found on [test.html](https://unpkg.com/muicss-webcomp/test-web.html) page of this repo.
 
 You need to put the shim and the polyfill from [webcompcomponets repository](https://github.com/webcomponents/webcomponentsjs) at the beginning of the page, do not bundle them with your main application script:
 
