@@ -171,7 +171,7 @@ $mui-input-height:                32px !default;
 $mui-input-placeholder-color:     rgba(mui-color('black'), 0.26) !default;
 
 $mui-input-border-color:          $mui-input-placeholder-color !default;
-$mui-input-border-color-focus:    $mui-primary-color !default;
+$mui-input-border-color-focus:    var(--primary-color,$mui-primary-color) !default;
 
 $mui-textarea-height:             64px !default;
 

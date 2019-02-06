@@ -304,7 +304,6 @@ export class MuiTextField extends Component {
     let labelStyle = {};
 
     if (this.paddingLeft) {
-      console.log("bla");
       props.style = "padding-left:" + this.paddingLeft;
       labelStyle.style = "padding-left:" + this.paddingLeft;
     }
